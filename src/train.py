@@ -1,78 +1,76 @@
-import torch.nn as nn
-import torch
-import time
+import sys
+sys.path.append('/Users/rt853/repos/UoB/bath-persuasion-detection/models')
+
 from tqdm.auto import tqdm
+from bert_classifier import BertClassifier
+import torch.nn as nn 
+import torch
 
-from persuasionModel import TransformerMultilabelClassifier
-from transformers import BertModel
-from preprocess import preprocess
-from utils import load_config, getargs
+from utils import gen_metadata
 
+def init_hyperparameeters(config, label_columns):
+    
+    device = 'cuda' if torch.cuda.is_available() else 'cpu'
+    num_epochs = config.get('num_epochs')
+    criterion = nn.BCEWithLogitsLoss()  # Binary cross-entropy loss for multilabel classification
 
-def load_params(config):
-
-    model_embeddings = config.get('model')[config.get('model_setup')].get('embeddings')
-    model_desc = config.get('model')[config.get('model_setup')].get('name')
-    device = config.get('hyperparameters').get('device')
-    pretrained_model = BertModel.from_pretrained(model_embeddings)
-    return pretrained_model, model_desc, device
-
-
-def training_setup(config, pretrained_model, device, num_labels):
-
-    model = TransformerMultilabelClassifier(pretrained_model, num_labels)
-    criterion = nn.BCEWithLogitsLoss()
-    optimizer = torch.optim.Adam(
-        model.parameters(), lr=config.get('hyperparameters').get('learning_rate'))
+    model = BertClassifier(config.get('pretrained_model'), len(label_columns))
     model.to(device)
-    return model, criterion, optimizer
+    optimizer = torch.optim.Adam(model.parameters(), lr=2e-5)
+    return device, num_epochs, criterion, model, optimizer
 
+def train_model(model, training_dataloader, num_epochs, device, optimizer, criterion):
 
-def train(config):
+    avg_loss = 0
+    model.train()
 
-    pretrained_model, model_desc, device = load_params(config)
+    with tqdm(range(num_epochs), desc='Average Epoch Loss: ') as t:
+        for _ in range(num_epochs):
+            epoch_loss = []
+            
+            with tqdm(range(len(training_dataloader)), desc='Loss: 0') as t2:
+                for _, batch in enumerate(training_dataloader):
 
-    model, criterion, optimizer = training_setup(
-        config, pretrained_model, device, len(config.get('labels'))
-    )
+                    input_ids = batch['input_ids'].to(device)
+                    attention_mask = batch['attention_mask'].to(device)
+                    labels = batch['labels'].to(device)
 
-    epoch_losses = []
-    training_dataloader, testing_dataloader = preprocess(config)
-    num_epochs = config.get('hyperparameters').get('num_epochs')
-    with tqdm(range(num_epochs), desc='Epoch: ') as pbar1:
-        for epoch_num in range(num_epochs):
-            pbar1.set_description(f'Epoch: {epoch_num+1}')
-            epoch_loss = train_epoch(training_dataloader, model, criterion, optimizer, device)
-            pbar1.update(1)
-            epoch_losses.append(epoch_loss)
+                    optimizer.zero_grad()
 
-    return model, epoch_losses
+                    outputs = model(input_ids, attention_mask)
 
+                    loss = criterion(outputs, labels.float())
+                    epoch_loss.append(loss.item())
+                    loss.backward()
+                    optimizer.step()
 
-def train_epoch(training_dataloader, model, criterion, optimizer, device):
+                    t2.set_description(
+                        f'Loss: {round(sum(epoch_loss)/len(epoch_loss),4)}')
+                    t2.update()
 
-    epoch_loss = 0
-    with tqdm(training_dataloader, desc='Training: ') as pbar2:
-        for batch_idx, batch in enumerate(training_dataloader):
-            pbar2.update(1)
-            inputs = batch['input_ids'].to(device)
-            attention_mask = batch['attention_mask'].to(device)
-            targets = batch['labels'].to(device)
+        t.set_description(
+        f'Average Epoch Loss: {round(sum(epoch_loss)/len(epoch_loss),4)}')
+        t.update()
 
-            optimizer.zero_grad()
+    return avg_loss, model
 
-            outputs = model(inputs, attention_mask)
-            loss = criterion(outputs, targets.float())
-            loss.backward()
-            optimizer.step()
-            epoch_loss += loss.item()
-            if (batch_idx + 1) % (len(training_dataloader) // 5) == 0:
-                pbar2.set_description(f'Avg Epoch Loss: {round(epoch_loss / len(training_dataloader), 8)}')
+def train(config, label_columns, training_dataloader):
+    """
+    Trains a model using the provided configuration, label columns, and training dataloader.
 
-    return epoch_loss/len(training_dataloader)
+    Args:
+        config (dict): Configuration parameters for training.
+        label_columns (list): List of column names for the labels.
+        training_dataloader (DataLoader): DataLoader object containing the training data.
 
-
-if __name__ == '__main__':
-    args = getargs()
-    cnfg = load_config(args.config_path)
-    trained_model = train(cnfg)
+    Returns:
+        tuple: A tuple containing the average loss and the trained model.
+    """
+    device, num_epochs, criterion, model, optimizer = init_hyperparameeters(config, label_columns)
+    avg_loss, trained_model = train_model(model, training_dataloader, num_epochs, device, optimizer, criterion)
+    meta_data = gen_metadata(config, 'model')
+    
+    if config.get('output_model'): 
+        torch.save(trained_model.state_dict(), f"{config.get('output_model')}_{meta_data}_{avg_loss}.pth")
+        
+    return trained_model

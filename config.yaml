@@ -1,7 +1,4 @@
 # Config variables for text classification using BERT embeddings
-model:
-  name: BERT
-  num_classes: 2
 
 # DATA PREPROCESSING
 path_to_training: ./data/raw/training.csv

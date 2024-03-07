@@ -1,0 +1,16 @@
+# Config variables for text classification using BERT embeddings
+model:
+  name: BERT
+  pretrained_model: bert-base-uncased
+  num_classes: 2
+
+data:
+  train_file: /path/to/train_data.csv
+  test_file: /path/to/test_data.csv
+  batch_size: 32
+
+training:
+  num_epochs: 10
+  learning_rate: 0.001
+  optimizer: AdamW
+  weight_decay: 0.01

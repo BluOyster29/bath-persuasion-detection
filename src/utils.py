@@ -1,35 +1,40 @@
-import yaml
-import argparse
+import argparse 
+import yaml 
 import pickle
 
-def getargs():
-    p = argparse.ArgumentParser()
-    p.add_argument('config_path', type=str, default='.config.yaml')
-    return p.parse_args()
+def get_args():
+    # Generate Arguments
+    parser = argparse.ArgumentParser()
+    parser.add_argument("config_path", help="Path to config.yaml")
+    return parser.parse_args()
 
 
-def load_config(file_path):
-    with open(file_path, 'r') as file:
-        config = yaml.safe_load(file)
+def load_config(config_path):
+    # Load Config
+    with open(config_path, 'r', encoding='utf-8') as f:
+        config = yaml.safe_load(f)
     return config
 
-
-def unpickle(path):
-    with open(path, 'rb') as file:
-        return pickle.load(file)
-    
-def convert_config_to_text(config):
+def output_pickle(object, config, item_name):
+    # Output Pickle
+    with open(f"{config.get('output_dataloader')}_{item_name}.pkl", 'wb') as f:
+        pickle.dump(object, f)
+        
+def gen_metadata(config, metatype, **kwargs):
     """
-    Converts a dictionary of configuration options to a formatted text output.
+    Generate metadata based on the given configuration and metatype.
 
     Args:
-        config (dict): A dictionary containing configuration options.
+        config (dict): A dictionary containing configuration parameters.
+        metatype (str): The type of metadata to generate.
 
     Returns:
-        str: A formatted text output representing the configuration options.
-    """
-    text_output = ""
-    for key, value in config.items():
-        text_output += f"{key}: {value}\n"
-    return text_output
+        str: The generated metadata.
 
+    """
+    if metatype == 'datalodaer':
+        meta = f"{config.get('batch_size')}_{config.get('max_token_len')}_{config.get('sampler')}"
+    
+    if metatype == 'model':
+        meta = f"{config.get('pretrained_model')}_{config.get('num_epochs')}_{config.get('learning_rate')}_{config.get('batch_size')}"
+    return meta

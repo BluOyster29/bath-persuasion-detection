@@ -16,3 +16,7 @@ optimizer: AdamW
 weight_decay: 0.01
 output_model: ./models/saved_models/
 use_pretrained : False
+
+# OUTPUT DATA 
+output_training_df_path: ./data/processed/dataframes/training
+output_testing_df_path: ./data/processed/dataframes/testing

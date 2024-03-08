@@ -1,8 +1,8 @@
 from torch.utils.data import Dataset
 import torch
-
-import pandas as pd 
+import pandas as pd
 from transformers import BertTokenizer
+
 
 class PersuasionStrategyDataset(Dataset):
     def __init__(
@@ -10,7 +10,8 @@ class PersuasionStrategyDataset(Dataset):
         data: pd.DataFrame,
         tokenizer: BertTokenizer,
         max_token_len
-        ):
+            ):
+
         self.tokenizer = tokenizer
         self.data = data
         self.max_token_len = max_token_len

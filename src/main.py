@@ -11,6 +11,7 @@ warnings.filterwarnings("ignore", category=FutureWarning)
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+
 def main(parsed_args):
     
     logger.info('Loading config from %s', parsed_args.config_path)
@@ -18,8 +19,14 @@ def main(parsed_args):
     logger.info('Config Loaded')
     logger.info('Importing Data')
     train_df, test_df, label_columns = import_data(config)
+    logger.info('Data Imported')
     training_dataloader, testing_dataloader = build_dataloaders(train_df[:1], test_df[:1], config)
+    logger.info('Data Loaded')
     trained_model = train(config, label_columns, training_dataloader)
+    logger.info('Training Complete')
+    
+    logger.info('Saving Model')
+    
 
 if __name__ == '__main__':
     logger.info('Starting Main')

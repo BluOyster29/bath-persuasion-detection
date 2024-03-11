@@ -53,7 +53,7 @@ class RNN(nn.Module):
             vocab_size, self.embedding_size, padding_idx=0)
         self.rnn = nn.GRU(
             self.embedding_size, self.hidden_size, batch_first=True,
-                num_layers=2, dropout=0.1, bidirectional=True)
+            num_layers=2, dropout=0.1, bidirectional=True)
         self.dropout = nn.Dropout(0.1)
         self.fc = nn.Linear(self.hidden_size*2, output_size)
         self.relu = nn.ReLU()

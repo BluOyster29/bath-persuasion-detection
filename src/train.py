@@ -2,42 +2,54 @@ import sys
 sys.path.append('/Users/rt853/repos/UoB/bath-persuasion-detection/models')
 
 from tqdm.auto import tqdm
-from bert_classifier import BertClassifier
-import torch.nn as nn 
+from bert_classifier import BertClassifier, RNN
+import torch.nn as nn
 import torch
 
 from utils import gen_metadata
 
-def init_hyperparameeters(config, label_columns):
-    
+
+def init_hyperparameeters(config, label_columns,vocab_size=None):
+
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
     num_epochs = config.get('num_epochs')
-    criterion = nn.BCEWithLogitsLoss()  # Binary cross-entropy loss for multilabel classification
-
-    model = BertClassifier(config.get('pretrained_model'), len(label_columns))
+    criterion = nn.BCEWithLogitsLoss()  
+    if config.get('use_pretrained'):
+        model = BertClassifier(config.get('pretrained_model'), len(label_columns))
+    else:
+        model = RNN(vocab_size, config, len(label_columns))
     model.to(device)
-    optimizer = torch.optim.Adam(model.parameters(), lr=2e-5)
+    optimizer = torch.optim.Adam(model.parameters(), lr=2e-5, weight_decay=1e-5)
     return device, num_epochs, criterion, model, optimizer
 
-def train_model(model, training_dataloader, num_epochs, device, optimizer, criterion):
+
+def train_model(
+        model, training_dataloader, num_epochs, device, optimizer, criterion):
 
     avg_loss = 0
+
     model.train()
 
     with tqdm(range(num_epochs), desc='Average Epoch Loss: ') as t:
-        for _ in range(num_epochs):
+        for e in range(num_epochs):
             epoch_loss = []
-            
-            with tqdm(range(len(training_dataloader)), desc='Loss: 0') as t2:
-                for _, batch in enumerate(training_dataloader):
 
-                    input_ids = batch['input_ids'].to(device)
-                    attention_mask = batch['attention_mask'].to(device)
-                    labels = batch['labels'].to(device)
+            with tqdm(range(len(training_dataloader)), desc='Loss: 0') as t2:
+                for b, batch in enumerate(training_dataloader):
 
                     optimizer.zero_grad()
 
-                    outputs = model(input_ids, attention_mask)
+                    if model.name == 'rnn':
+                        input_ids = batch['input_ids'].to(device)
+                        labels = batch['labels'].to(device)
+                        embeddings = model.embd(input_ids)
+                        outputs = model(embeddings)
+ 
+                    elif model.name == 'bert':
+                        input_ids = batch['input_ids'].to(device)
+                        attention_mask = batch['attention_mask'].to(device)
+                        labels = batch['labels'].to(device)
+                        outputs = model(input_ids, attention_mask)
 
                     loss = criterion(outputs, labels.float())
                     epoch_loss.append(loss.item())
@@ -45,7 +57,7 @@ def train_model(model, training_dataloader, num_epochs, device, optimizer, crite
                     optimizer.step()
 
                     t2.set_description(
-                        f'Loss: {round(sum(epoch_loss)/len(epoch_loss),4)}')
+                        f'Epoch: {e} | Batch {b} | Average Loss: {round(sum(epoch_loss)/len(epoch_loss),4)}')
                     t2.update()
 
         t.set_description(
@@ -54,7 +66,8 @@ def train_model(model, training_dataloader, num_epochs, device, optimizer, crite
 
     return avg_loss, model
 
-def train(config, label_columns, training_dataloader):
+
+def train(config, training_dataloader):
     """
     Trains a model using the provided configuration, label columns, and training dataloader.
 
@@ -66,7 +79,11 @@ def train(config, label_columns, training_dataloader):
     Returns:
         tuple: A tuple containing the average loss and the trained model.
     """
-    device, num_epochs, criterion, model, optimizer = init_hyperparameeters(config, label_columns)
+    vocab_size=None
+    label_columns = training_dataloader.dataset.label_columns
+    if not config.get('use_pretrained'):
+        vocab_size = training_dataloader.dataset.vocab_size
+    device, num_epochs, criterion, model, optimizer = init_hyperparameeters(config, label_columns, vocab_size)
     avg_loss, trained_model = train_model(model, training_dataloader, num_epochs, device, optimizer, criterion)
     meta_data = gen_metadata(config, 'model')
     

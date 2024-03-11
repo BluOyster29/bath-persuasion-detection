@@ -7,8 +7,12 @@ concat : True
 test_size : 0.2
 drop_social_pressure: True
 max_token_count : 60
-batch_size: 32
+drop_class: 
+  - 6-SOCIAL
+  - 7-PRESSURE
 
+# MODEL TRAINING
+batch_size: 64
 num_epochs: 10
 learning_rate: 0.001
 pretrained_model: bert-base-uncased
@@ -16,7 +20,11 @@ optimizer: AdamW
 weight_decay: 0.01
 output_model: ./models/saved_models/
 use_pretrained : False
+hidden_size: 64
+embedding_size: 16
 
 # OUTPUT DATA 
 output_training_df_path: ./data/processed/dataframes/training
 output_testing_df_path: ./data/processed/dataframes/testing
+roc_plot_path : ./results/figures/roc_plot.png
+stats_path: ./results/stats/stats.txt

@@ -53,8 +53,8 @@ def preprocess_df(df, drop_social_pressure, drop_dups):
 
 def output_df(training_df, testing_df, config):
     training_path = config.get('output_training_df_path') + \
-          'drop_social_pressure_' + str(config.get('drop_social_pressure')) + \
-            '_drop_dups_' + str(config.get('drop_dups')) + '.csv'
+        'drop_social_pressure_' + str(config.get('drop_social_pressure')) + \
+        '_drop_dups_' + str(config.get('drop_dups')) + '.csv'
 
     testing_path = config.get('output_testing_df_path') + \
         'drop_social_pressure_' + str(config.get('drop_social_pressure')) + \
@@ -67,9 +67,9 @@ def output_df(training_df, testing_df, config):
 
 def build_vocab(training_df):
 
-    vocab = {'<start>' : 1,
-             '<end>' : 2,
-             '<unk>' : 3}
+    vocab = {'<start>': 1,
+             '<end>': 2,
+             '<unk>': 3}
 
     for _, row in training_df.iterrows():
         for token in row.text.split():
@@ -84,7 +84,8 @@ def encode_text(df, vocab):
         text = row.text.split()
         text.insert(0, '<start>')
         text.append('<end>')
-        text = [str(vocab[token]) if token in vocab else str(vocab['<unk>']) for token in text]
+        text = [str(vocab[token]) if token in vocab
+                else str(vocab['<unk>']) for token in text]
         text = ' '.join(text)
         df.at[idx, 'encoded'] = text
     return df
@@ -108,14 +109,15 @@ def import_data(config: dict):
 
     training_df = preprocess_df(
         training_df, config.get('drop_social_pressure'),
-            config.get('drop_dups'))
+        config.get('drop_dups'))
     testing_df = preprocess_df(
         testing_df, config.get('drop_social_pressure'),
-            config.get('drop_dups'))
-    
+        config.get('drop_dups'))
+
     if not config.get('use_pretrained'):
-        training_df, testing_df, vocab = preprocess_lstm(training_df, testing_df)
-        
+        training_df, testing_df, vocab = preprocess_lstm(
+            training_df, testing_df)
+
     # labels = training_df.columns[1:].tolist()
 
     if config.get('verbose'):

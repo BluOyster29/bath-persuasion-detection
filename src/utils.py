@@ -1,8 +1,13 @@
+from torch import load
+
 import argparse
 import yaml
 import pickle
-from models.bert_classifier import BertClassifier
-from torch import load
+import logging
+import sys
+
+sys.path.append('models')
+from bert_classifier import BertClassifier
 
 
 def get_args():
@@ -14,6 +19,9 @@ def get_args():
 
 def load_config(config_path):
     # Load Config
+
+    logger = logging.getLogger(__name__)
+    logger.info('Loading config from %s', config_path)
     with open(config_path, 'r', encoding='utf-8') as f:
         config = yaml.safe_load(f)
     return config
@@ -47,16 +55,20 @@ def gen_metadata(config, metatype, **kwargs):
     return meta
 
 
+def load_dataloader(config):
+    pass
+
+
 def load_model(config, num_classes):
 
     model = BertClassifier(config.get('pretrained_model'), num_classes)
     model.load_state_dict(load(config.get('model_path')))
     return model
 
-    def load_dataloader(config, item_name):
-        with open(
-            f"{config.get('eval_dataloader_path')}.pkl",
-            'rb'
-                ) as f:
-            dataloader = pickle.load(f)
-        return dataloader
+def load_dataloader(config, item_name):
+    with open(
+        f"{config.get('eval_dataloader_path')}.pkl",
+        'rb'
+            ) as f:
+        dataloader = pickle.load(f)
+    return dataloader

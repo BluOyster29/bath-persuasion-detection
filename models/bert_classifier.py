@@ -52,7 +52,7 @@ class RNN(nn.Module):
         self.embd = nn.Embedding(
             vocab_size, self.embedding_size, padding_idx=0)
         self.rnn = nn.GRU(
-            self.embedding_size, self.hidden_size, batch_first=True, 
+            self.embedding_size, self.hidden_size, batch_first=True,
                 num_layers=2, dropout=0.1, bidirectional=True)
         self.dropout = nn.Dropout(0.1)
         self.fc = nn.Linear(self.hidden_size*2, output_size)
@@ -64,6 +64,7 @@ class RNN(nn.Module):
         out = self.dropout(self.relu(self.fc(out[:, -1, :])))
         return out
 
+
 class FeedForward(nn.Module):
     def __init__(self, input_size, hidden_size, output_size):
         super(FeedForward, self).__init__()
@@ -71,7 +72,7 @@ class FeedForward(nn.Module):
         self.fc2 = nn.Linear(hidden_size, output_size)
         self.relu = nn.ReLU()
         self.dropout = nn.Dropout(0.1)
-    
+
     def forward(self, x):
         out = self.fc1(x)
         out = self.relu(out)

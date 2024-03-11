@@ -31,3 +31,8 @@ ENV/
 # OS generated files
 .DS_Store
 Thumbs.db
+models/saved_models/_bert-base-uncased_1_0.001_32_0.pth
+models/saved_models/_bert-base-uncased_10_0.001_32_0.pth
+models/saved_models/_bert-base-uncased_10_0.001_64_0.pth
+models/saved_models/_bert-base-uncased_10_0.01_64_0.pth
+models/saved_models/_bert-base-uncased_50_0.001_64_0.pth

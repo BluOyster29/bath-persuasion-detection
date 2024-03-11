@@ -12,6 +12,7 @@ drop_class:
   - 7-PRESSURE
 
 # MODEL TRAINING
+binary_model: True
 batch_size: 64
 num_epochs: 10
 learning_rate: 0.001

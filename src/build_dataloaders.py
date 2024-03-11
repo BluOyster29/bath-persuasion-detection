@@ -1,9 +1,10 @@
 from collections import Counter
 import torch
+import logging
 from torch.utils.data import WeightedRandomSampler, DataLoader
 from transformers import BertTokenizer
 
-from persuasion_strategy_dataset import PersuasionStrategyDataset
+from persuasion_strategy_dataset import PersuasionStrategyDatasetBERT, PersuasionStrategyDatasetLSTM
 from utils import load_config, get_args, output_pickle, gen_metadata
 from preprocess import import_data
 
@@ -33,7 +34,8 @@ def build_sampler(training_dataset):
     sampler = WeightedRandomSampler(weights_tensor, len(weights_tensor))
     return sampler
 
-def gen_dataloader(df, tokenizer, max_token_len, batch_size, sampler=None):
+
+def gen_dataloader(df, tokenizer, config, vocab):
     """
     Generate a DataLoader object from a DataFrame.
 
@@ -48,28 +50,37 @@ def gen_dataloader(df, tokenizer, max_token_len, batch_size, sampler=None):
         DataLoader: The DataLoader object.
 
     """
-    dataset = PersuasionStrategyDataset(
-        data=df,
-        tokenizer=tokenizer,
-        max_token_len=max_token_len
-    )
 
-    if sampler:
+    if config.get('use_pretrained'):
+        dataset = PersuasionStrategyDatasetBERT(
+            data=df,
+            tokenizer=tokenizer,
+            max_token_len=config.get('max_token_len')
+        )
+
+    else:
+        dataset = PersuasionStrategyDatasetLSTM(
+            data=df,
+            vocab=vocab
+        )
+
+    if config.get('use_sampler'):
         sampler = build_sampler(dataset)
         dataloader = DataLoader(
             dataset,
-            batch_size=batch_size,
+            batch_size=config.get('batch_size'),
             sampler=sampler
         )
     else:
         dataloader = DataLoader(
             dataset,
-            batch_size=batch_size
+            batch_size=config.get('batch_size')
         )
 
     return dataloader
 
-def build_dataloaders(train_df, test_df, config):
+
+def build_dataloaders(train_df, test_df, config, vocab):
     """
     Build dataloaders for training and testing data.
 
@@ -81,15 +92,18 @@ def build_dataloaders(train_df, test_df, config):
     Returns:
         tuple: A tuple containing the training dataloader and testing dataloader.
     """
-    tokenizer = BertTokenizer.from_pretrained(config.get('pretrained_model'))
+    
+    tokenizer= None
+    logger = logging.getLogger(__name__)
+    if config.get('use_pretrained'):
+        tokenizer = BertTokenizer.from_pretrained(config.get('pretrained_model'))
 
     train_dataloader = gen_dataloader(
         train_df,
         tokenizer,
-        config.get('max_token_len'),
-        config.get('batch_size'),
-        config.get('sampler')
-    )
+        config,
+        vocab)
+    
 
     if config.get('output_dataloader'):
         metadata = gen_metadata(config, 'dataloader')
@@ -98,14 +112,15 @@ def build_dataloaders(train_df, test_df, config):
     test_dataloader = gen_dataloader(
         test_df,
         tokenizer,
-        config.get('max_token_len'),
-        config.get('batch_size')
+        config,
+        vocab
     )
 
     if config.get('output_dataloader'):
         metadata = gen_metadata(config, 'dataloader')
         output_pickle(test_dataloader, config, 'testing_dataloader_{}'.format(metadata) + '.pkl')
     
+    logger.info('Dataloaders built')
     return train_dataloader, test_dataloader
 
 if __name__ == '__main__':
@@ -114,4 +129,3 @@ if __name__ == '__main__':
     config = load_config(args.config)
     train_df, test_df, label_names = import_data(config)
     training_dataloader, testing_dataloader = build_dataloaders(train_df, test_df, config)
-    

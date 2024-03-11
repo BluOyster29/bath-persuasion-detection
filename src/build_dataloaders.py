@@ -4,7 +4,8 @@ import logging
 from torch.utils.data import WeightedRandomSampler, DataLoader
 from transformers import BertTokenizer
 
-from persuasion_strategy_dataset import PersuasionStrategyDatasetBERT, PersuasionStrategyDatasetLSTM
+from persuasion_strategy_dataset import PersuasionStrategyDatasetBERT
+from persuasion_strategy_dataset import PersuasionStrategyDatasetLSTM
 from utils import load_config, get_args, output_pickle, gen_metadata
 from preprocess import import_data
 
@@ -20,11 +21,15 @@ def build_sampler(training_dataset):
         WeightedRandomSampler: The weighted random sampler.
 
     """
-    labels = [torch.argmax(label['labels']).item() for label in training_dataset]  # Assuming your dataset returns (input_vector, label) pairs
+    labels = [torch.argmax(label['labels']).item()
+              for label in training_dataset]
     class_distribution = Counter(labels)
 
     # Calculate weights for each sample
-    class_weights = {class_label: len(training_dataset) / (len(class_distribution) * class_count) for class_label, class_count in class_distribution.items()}
+    class_weights = {class_label: len(training_dataset) /
+                     (len(class_distribution) * class_count) for
+                     class_label, class_count in class_distribution.items()}
+
     weights = [class_weights[label] for label in labels]
 
     # Convert weights to tensor
@@ -90,25 +95,27 @@ def build_dataloaders(train_df, test_df, config, vocab):
         config (dict): A dictionary containing configuration parameters.
 
     Returns:
-        tuple: A tuple containing the training dataloader and testing dataloader.
+        tuple: A tuple containing the training
+        dataloader and testing dataloader.
     """
-    
-    tokenizer= None
+
+    tokenizer = None
     logger = logging.getLogger(__name__)
     if config.get('use_pretrained'):
-        tokenizer = BertTokenizer.from_pretrained(config.get('pretrained_model'))
+        tokenizer = BertTokenizer.from_pretrained(
+            config.get('pretrained_model'))
 
     train_dataloader = gen_dataloader(
         train_df,
         tokenizer,
         config,
         vocab)
-    
 
     if config.get('output_dataloader'):
         metadata = gen_metadata(config, 'dataloader')
-        output_pickle(train_dataloader, config, 'training_dataloader_{}'.format(metadata) + '.pkl')
-        
+        output_pickle(train_dataloader, config,
+                      'training_dataloader_{}'.format(metadata) + '.pkl')
+
     test_dataloader = gen_dataloader(
         test_df,
         tokenizer,
@@ -118,14 +125,18 @@ def build_dataloaders(train_df, test_df, config, vocab):
 
     if config.get('output_dataloader'):
         metadata = gen_metadata(config, 'dataloader')
-        output_pickle(test_dataloader, config, 'testing_dataloader_{}'.format(metadata) + '.pkl')
-    
+        output_pickle(test_dataloader, config,
+                      'testing_dataloader_{}'.format(metadata) + '.pkl')
+
     logger.info('Dataloaders built')
     return train_dataloader, test_dataloader
+
 
 if __name__ == '__main__':
     # Example usage
     args = get_args()
     config = load_config(args.config)
     train_df, test_df, label_names = import_data(config)
-    training_dataloader, testing_dataloader = build_dataloaders(train_df, test_df, config)
+    training_dataloader, testing_dataloader = build_dataloaders(
+        train_df, test_df, config
+    )

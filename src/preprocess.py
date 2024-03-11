@@ -65,8 +65,40 @@ def output_df(training_df, testing_df, config):
     logger.info(f"Dataframes output to {training_path} and {testing_path}")
 
 
-def import_data(config: dict):
+def build_vocab(training_df):
 
+    vocab = {'<start>' : 1,
+             '<end>' : 2,
+             '<unk>' : 3}
+
+    for _, row in training_df.iterrows():
+        for token in row.text.split():
+            if token not in vocab:
+                vocab[token] = len(vocab)
+    return vocab
+
+
+def encode_text(df, vocab):
+    df['encoded'] = ''
+    for idx, row in df.iterrows():
+        text = row.text.split()
+        text.insert(0, '<start>')
+        text.append('<end>')
+        text = [str(vocab[token]) if token in vocab else str(vocab['<unk>']) for token in text]
+        text = ' '.join(text)
+        df.at[idx, 'encoded'] = text
+    return df
+
+
+def preprocess_lstm(train_df, test_df):
+    vocab = build_vocab(train_df)
+    train_df = encode_text(train_df, vocab)
+    test_df = encode_text(test_df, vocab)
+    return train_df, test_df, vocab
+
+
+def import_data(config: dict):
+    vocab = None
     training_df, testing_df = load_csvs(
         config.get('path_to_training'),
         config.get('path_to_testing'),
@@ -80,8 +112,11 @@ def import_data(config: dict):
     testing_df = preprocess_df(
         testing_df, config.get('drop_social_pressure'),
             config.get('drop_dups'))
-
-    labels = training_df.columns[1:].tolist()
+    
+    if not config.get('use_pretrained'):
+        training_df, testing_df, vocab = preprocess_lstm(training_df, testing_df)
+        
+    # labels = training_df.columns[1:].tolist()
 
     if config.get('verbose'):
         print(f'Num Training {len(training_df)}')
@@ -90,7 +125,7 @@ def import_data(config: dict):
     if config.get('output_dfs'):
         output_df(training_df, testing_df, config)
 
-    return training_df, testing_df, labels
+    return training_df, testing_df, vocab
 
 
 if __name__ == '__main__':

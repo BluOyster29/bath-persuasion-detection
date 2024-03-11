@@ -27,11 +27,18 @@ def eval_model(model, eval_loader, device):
     model.eval()
     with torch.no_grad():
         for batch in tqdm(eval_loader):
-            input_ids = batch['input_ids'].to(device)
-            attention_mask = batch['attention_mask'].to(device)
-            labels = batch['labels'].to(device)
-
-            outputs = model(input_ids, attention_mask)
+            
+            if model.name == 'rnn':
+                input_ids = batch['input_ids'].to(device)
+                labels = batch['labels'].to(device)
+                embeddings = model.embd(input_ids)
+                outputs = model(embeddings)
+            else:
+                input_ids = batch['input_ids'].to(device)
+                attention_mask = batch['attention_mask'].to(device)
+                labels = batch['labels'].to(device)
+                outputs = model(input_ids, attention_mask)
+                
             predicted_probs = torch.sigmoid(outputs)
             predicted_labels.extend(predicted_probs.cpu().numpy() > 0.4)
             true_labels.extend(labels.cpu().numpy())
@@ -78,7 +85,6 @@ def roc_step_1(
         for each class.
     """
 
-    predicted_labels = np.array(predicted_labels).astype(int)
     fpr = dict()
     tpr = dict()
     roc_auc = dict()
@@ -148,6 +154,9 @@ def gen_roc_auc(true_labels, predicted_labels, label_columns, config):
     Returns:
         None
     """
+    true_labels = np.array(true_labels).astype(int)
+    predicted_labels = np.array(predicted_labels).astype(int)
+    
     fpr, tpr, roc_auc = roc_step_1(
         true_labels, predicted_labels, label_columns)
 
@@ -192,7 +201,7 @@ def output_stats(stats, config):
 
 def evaluate(config, eval_loader=None, trained_model=None):
 
-    label_columns = eval_loader.dataset.num_classes
+    label_columns = eval_loader.dataset.label_columns
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
     if config.get('From saved mode'):

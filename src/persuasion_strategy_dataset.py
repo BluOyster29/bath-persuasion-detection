@@ -1,10 +1,13 @@
 from torch.utils.data import Dataset
+from torch.nn.utils.rnn import pad_sequence
+
 import torch
 import pandas as pd
+import numpy as np
 from transformers import BertTokenizer
 
 
-class PersuasionStrategyDataset(Dataset):
+class PersuasionStrategyDatasetBERT(Dataset):
     def __init__(
         self,
         data: pd.DataFrame,
@@ -41,4 +44,31 @@ class PersuasionStrategyDataset(Dataset):
             input_ids=encoding["input_ids"].flatten(),
             attention_mask=encoding["attention_mask"].flatten(),
             labels=torch.FloatTensor(labels)
+        )
+
+
+class PersuasionStrategyDatasetLSTM(Dataset):
+    def __init__(self, data: pd.DataFrame, vocab):
+        self.encoded_text = self.df_to_tensor(data.encoded.tolist())
+        self.labels = data.iloc[:, 1:-1].values.tolist()
+        self.label_columns = data.columns.tolist()[1:-1]
+        self.vocab = vocab
+        self.vocab_size = len(vocab)
+        
+    def df_to_tensor(self, data):
+        tensors = []
+        for row in data:
+            row = np.array([int(i) for i in row.split()])
+            tensors.append(torch.LongTensor(row))
+        return pad_sequence(tensors, batch_first=True, padding_value=0)
+    
+    def __len__(self):
+        return len(self.encoded_text)
+
+    def __getitem__(self, index: int):
+        text = self.encoded_text[index]
+        labels = self.labels[index]
+        return dict(
+            input_ids=text,
+            labels=torch.LongTensor(labels)
         )

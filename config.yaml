@@ -12,16 +12,16 @@ drop_class:
   - 7-PRESSURE
 
 # MODEL TRAINING
-binary_model: True
+binary_model: False
 batch_size: 64
-num_epochs: 10
+num_epochs: 5
 learning_rate: 0.001
-pretrained_model: bert-base-uncased
+pretrained_model: distilbert-base-cased
 optimizer: AdamW
 weight_decay: 0.01
 output_model: ./models/saved_models/
 use_pretrained : False
-hidden_size: 64
+hidden_size: 16
 embedding_size: 16
 
 # OUTPUT DATA 

@@ -1,0 +1,33 @@
+id,text,1-RAPPORT,2-NEGOTIATE,3-EMOTION,3-EMOTION#4-LOGIC,4-LOGIC,5-AUTHORITY,6-SOCIAL,8-NO-PERSUASION
+99,"Hey, how's it going? I hope you're doing well.",0,0,0,0,0,0,0,1
+100,"I understand you might be busy, but could you spare some time to help me out?",1,0,0,0,0,0,0,0
+102,Participating in this event aligns with your values of giving back to the community.,0,0,0,0,0,0,1,0
+104,"Many people from our circle are already involved, and they're counting on us to participate.",0,0,0,0,0,0,1,0
+105,It would mean a lot to me if you could join. I'm relying on your support.,0,0,1,0,0,0,0,0
+106,But it's totally up to you. No pressure at all.,1,0,0,0,0,0,0,0
+107,"I'm really excited about this opportunity, and I think you'd enjoy it too.",1,0,0,0,0,0,0,0
+108,"As someone who's been involved in similar events before, I can assure you it's a worthwhile experience.",1,0,0,0,0,0,0,0
+109,Our friends have had amazing experiences participating in these charity runs.,0,0,0,0,0,0,1,0
+110,"By participating, we can contribute to a cause we both care about while also improving our fitness.",0,0,0,1,0,0,0,0
+111,"I've already registered us both, so I hope you're on board!",1,0,0,0,0,0,0,0
+112,"But of course, if you're not interested, that's okay too.",0,0,1,0,0,0,0,0
+113,Research shows that participating in charity events improves overall well-being.,1,0,0,0,0,0,0,0
+114,Imagine the joy of crossing the finish line knowing you've made a difference.,0,0,0,0,1,0,0,0
+115,"Let's compromise. If you join me for the run, I'll help you with your project next week.",0,1,0,0,0,0,0,0
+116,We can form a team and motivate each other throughout the training.,1,0,0,0,0,0,0,0
+117,We've always supported each other's goals. Joining this event would mean a lot to me.,1,0,0,0,0,0,0,0
+118,Experts in philanthropy recommend getting involved in community events like this.,0,0,0,0,0,1,0,0
+119,"Come on, don't miss out on this opportunity to do something meaningful.",1,0,0,0,0,0,0,0
+120,"I feel deeply connected to this cause, and I believe you would too.",1,0,0,0,0,0,0,0
+121,Participating in the charity run aligns with our shared values of compassion and generosity.,1,0,0,0,0,0,0,0
+122,The local news interviewed me about the impact of this charity event. They're expecting a big turnout.,0,0,0,0,0,0,0,1
+123,Remember the great time we had at the last charity event? This one will be even better.,1,0,0,0,0,0,0,0
+124,Let's find a way to make it work with your schedule. Can you spare just a couple of hours?,0,1,0,0,0,0,0,0
+125,"I've already signed us up, so we're all set to go. Just say yes!",1,0,0,0,0,0,0,0
+126,Our colleagues from work are forming a team. It'll be a great chance to bond outside the office.,1,0,0,0,0,0,0,0
+127,Participating in the charity run is a win-win situation. We get to exercise while supporting a good cause.,1,0,0,0,0,0,0,0
+128,Health experts recommend engaging in community events like this for both physical and mental well-being.,0,0,0,0,0,1,0,0
+129,Our friends from the running club are all joining. It'll be a fun group activity!,0,0,0,0,0,0,1,0
+130,Think about the smiles we'll bring to people's faces by contributing to charity.,0,0,1,0,0,0,0,0
+131,"Let's make a deal. If you come with me, I'll treat you to dinner afterwards.",0,1,0,0,0,0,0,0
+132,I know you've been wanting to get more involved in community activities. This is a perfect opportunity.,1,0,0,0,0,0,0,0

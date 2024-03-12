@@ -18,7 +18,8 @@ def init_hyperparameeters(config, label_columns, vocab_size=None):
     criterion = nn.BCEWithLogitsLoss()
 
     if config.get('use_pretrained'):
-        model = BertClassifier(config.get('pretrained_model'),
+        model = BertClassifier(config.get('pretrained_model').split('-')[0],
+                               config.get('pretrained_model'),
                                len(label_columns))
     else:
         model = RNN(vocab_size, config, len(label_columns))
@@ -51,7 +52,7 @@ def train_model(
                         embeddings = model.embd(input_ids)
                         outputs = model(embeddings)
 
-                    elif model.name == 'bert':
+                    elif model.name in ['bert', 'distilbert']:
                         input_ids = batch['input_ids'].to(device)
                         attention_mask = batch['attention_mask'].to(device)
                         labels = batch['labels'].to(device)
@@ -70,9 +71,9 @@ def train_model(
                     t2.set_description(description)
                     t2.update()
 
-        t.set_description(
-            f'Average Epoch Loss: {round(sum(epoch_loss)/len(epoch_loss),4)}')
-        t.update()
+            t.set_description(
+                f'Average Epoch Loss: {round(sum(epoch_loss)/len(epoch_loss),4)}')
+            t.update()
 
     return avg_loss, model
 

@@ -1,0 +1,66 @@
+[
+  {
+    "id": 1,
+    "text": "1-RAPPORT",
+    "prefixKey": null,
+    "suffixKey": "1",
+    "backgroundColor": "#73D8FF",
+    "textColor": "#ffffff"
+  },
+  {
+    "id": 2,
+    "text": "2-NEGOTIATE",
+    "prefixKey": null,
+    "suffixKey": "2",
+    "backgroundColor": "#AEA1FF",
+    "textColor": "#ffffff"
+  },
+  {
+    "id": 3,
+    "text": "3-EMOTION",
+    "prefixKey": null,
+    "suffixKey": "3",
+    "backgroundColor": "#FDA1FF",
+    "textColor": "#ffffff"
+  },
+  {
+    "id": 4,
+    "text": "4-LOGIC",
+    "prefixKey": null,
+    "suffixKey": "4",
+    "backgroundColor": "#68CCCA",
+    "textColor": "#ffffff"
+  },
+  {
+    "id": 5,
+    "text": "5-AUTHORITY",
+    "prefixKey": null,
+    "suffixKey": "5",
+    "backgroundColor": "#A4DD00",
+    "textColor": "#ffffff"
+  },
+  {
+    "id": 6,
+    "text": "6-SOCIAL",
+    "prefixKey": null,
+    "suffixKey": "6",
+    "backgroundColor": "#FCDC00",
+    "textColor": "#ffffff"
+  },
+  {
+    "id": 7,
+    "text": "7-PRESSURE",
+    "prefixKey": null,
+    "suffixKey": "7",
+    "backgroundColor": "#F44E3B",
+    "textColor": "#ffffff"
+  },
+  {
+    "id": 8,
+    "text": "8-NO-PERSUASION",
+    "prefixKey": null,
+    "suffixKey": "8",
+    "backgroundColor": "#9F0500",
+    "textColor": "#ffffff"
+  }
+]

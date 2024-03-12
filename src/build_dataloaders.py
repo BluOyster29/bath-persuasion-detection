@@ -2,7 +2,7 @@ from collections import Counter
 import torch
 import logging
 from torch.utils.data import WeightedRandomSampler, DataLoader
-from transformers import BertTokenizer
+from transformers import AutoTokenizer
 
 from persuasion_strategy_dataset import PersuasionStrategyDatasetBERT
 from persuasion_strategy_dataset import PersuasionStrategyDatasetLSTM
@@ -102,7 +102,7 @@ def build_dataloaders(train_df, test_df, config, vocab):
     tokenizer = None
     logger = logging.getLogger(__name__)
     if config.get('use_pretrained'):
-        tokenizer = BertTokenizer.from_pretrained(
+        tokenizer = AutoTokenizer.from_pretrained(
             config.get('pretrained_model'))
 
     train_dataloader = gen_dataloader(

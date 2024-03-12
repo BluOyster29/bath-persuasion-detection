@@ -4,14 +4,14 @@ from torch.nn.utils.rnn import pad_sequence
 import torch
 import pandas as pd
 import numpy as np
-from transformers import BertTokenizer
+from transformers import AutoTokenizer
 
 
 class PersuasionStrategyDatasetBERT(Dataset):
     def __init__(
         self,
         data: pd.DataFrame,
-        tokenizer: BertTokenizer,
+        tokenizer: AutoTokenizer,
         max_token_len
             ):
 

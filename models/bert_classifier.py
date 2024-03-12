@@ -1,8 +1,9 @@
 import torch.nn as nn
-from transformers import BertModel
+from transformers import AutoModel
 
 
 class BertClassifier(nn.Module):
+
     """
     BERT-based classifier model.
 
@@ -17,14 +18,15 @@ class BertClassifier(nn.Module):
 
     """
 
-    def __init__(self, bert_model, num_labels):
+    def __init__(self, name, bert_model, num_labels):
         super(BertClassifier, self).__init__()
-        self.name = 'bert'
-        self.bert = BertModel.from_pretrained(bert_model)
+        self.name = name
+        self.bert = AutoModel.from_pretrained(bert_model)
         self.dropout = nn.Dropout(0.1)
         self.classifier = nn.Linear(self.bert.config.hidden_size, num_labels)
 
     def forward(self, input_ids, attention_mask):
+
         """
         Forward pass of the BERT classifier.
 
@@ -36,8 +38,18 @@ class BertClassifier(nn.Module):
             torch.Tensor: The logits for each class.
 
         """
-        outputs = self.bert(input_ids=input_ids, attention_mask=attention_mask)
-        pooled_output = outputs.pooler_output
+        if self.name == 'bert':
+            outputs = self.bert(input_ids=input_ids, 
+                                attention_mask=attention_mask)
+            pooled_output = outputs.pooler_output
+
+        elif self.name == 'distilbert':
+            outputs = self.bert(input_ids=input_ids, 
+                                attention_mask=attention_mask)
+            pooled_output = outputs.last_hidden_state[:, 0, :]
+        else:
+            raise ValueError("Invalid model name")
+
         pooled_output = self.dropout(pooled_output)
         logits = self.classifier(pooled_output)
         return logits
@@ -61,8 +73,8 @@ class RNN(nn.Module):
     def forward(self, x):
         # x = self.embd(x)  # Convert word indices to word embeddings
         out, _ = self.rnn(x)
-        out = self.dropout(self.relu(self.fc(out[:, -1, :])))
-        return out
+        logits = self.fc(out[:, -1, :])
+        return logits
 
 
 class FeedForward(nn.Module):

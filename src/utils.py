@@ -1,12 +1,14 @@
 from torch import load
-
+import os
 import argparse
 import yaml
 import pickle
 import logging
 import sys
 
-sys.path.append('models')
+module_dir = os.path.expanduser('~/repos/UoB/bath-persuasion-detection/models')
+sys.path.append(module_dir)
+
 from bert_classifier import BertClassifier
 
 

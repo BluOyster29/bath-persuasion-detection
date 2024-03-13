@@ -41,3 +41,9 @@ models/saved_models/_distilbert-base-cased_5_0.001_64_0.pth
 models/saved_models/distilbert_1.pth
 models/saved_models/distilbert_2_no_social_5epochs.pth
 models/saved_models/TOD-BERT-JNT-V1_all.pth
+.ipynb_checkpoints/config-checkpoint.yaml
+notebooks/.ipynb_checkpoints/processing_doccano_output-checkpoint.ipynb
+notebooks/.ipynb_checkpoints/testing-checkpoint.ipynb
+src/.ipynb_checkpoints/test-checkpoint.py
+models/saved_models/distilbert_no_social_15epo.pth
+models/saved_models/TOD-BERT-JNT-V1_no_social.pth

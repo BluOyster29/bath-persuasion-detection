@@ -1,0 +1,15 @@
+                 precision    recall  f1-score   support
+
+      1-RAPPORT       0.89      0.87      0.88       813
+    2-NEGOTIATE       0.86      0.89      0.87       361
+      3-EMOTION       0.78      0.72      0.75       245
+        4-LOGIC       0.34      0.27      0.30        74
+    5-AUTHORITY       0.59      0.89      0.71        98
+       6-SOCIAL       0.00      0.00      0.00         5
+     7-PRESSURE       1.00      1.00      1.00         0
+8-NO-PERSUASION       0.79      0.78      0.78       152
+
+      micro avg       0.82      0.82      0.82      1748
+      macro avg       0.66      0.68      0.66      1748
+   weighted avg       0.82      0.82      0.82      1748
+    samples avg       0.83      0.82      0.81      1748

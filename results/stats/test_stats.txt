@@ -1,0 +1,17 @@
+Accuracy: 0.71875
+Precision: 0.71640625
+Recall: 0.71875
+F1: 0.6619791666666667
+Classification Report:                  precision    recall  f1-score   support
+
+      1-RAPPORT       0.79      0.90      0.84        21
+    2-NEGOTIATE       0.60      1.00      0.75         3
+      3-EMOTION       0.50      0.33      0.40         3
+        4-LOGIC       1.00      0.00      0.00         1
+    5-AUTHORITY       0.00      0.00      0.00         2
+8-NO-PERSUASION       1.00      0.00      0.00         2
+
+       accuracy                           0.72        32
+      macro avg       0.65      0.37      0.33        32
+   weighted avg       0.72      0.72      0.66        32
+

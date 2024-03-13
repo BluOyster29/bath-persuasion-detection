@@ -5,6 +5,7 @@ import yaml
 import pickle
 import logging
 import sys
+import time
 
 module_dir = os.path.expanduser(
     '~/repos/UoB/bath-persuasion-detection/models/')
@@ -106,3 +107,14 @@ def open_texts(path):
     with open(path, 'r') as file:
         texts = file.read().readlines()
     return texts
+
+
+def create_filename(hyperparameters):
+    current_time = time.strftime("%Y%m%d-%H%M%S")
+    hyperparameters_str = "_".join(
+        f"{k}={v}" for k, v in hyperparameters.items()
+        )
+
+    filename = f"{hyperparameters_str}_{current_time}.txt"
+
+    return filename

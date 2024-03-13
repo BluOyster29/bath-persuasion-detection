@@ -72,7 +72,8 @@ def train_model(
                     t2.update()
 
             t.set_description(
-                f'Average Epoch Loss: {round(sum(epoch_loss)/len(epoch_loss),4)}')
+                f'Average Epoch Loss: \
+                    {round(sum(epoch_loss)/len(epoch_loss),4)}')
             t.update()
 
     return avg_loss, model

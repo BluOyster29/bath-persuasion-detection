@@ -6,10 +6,11 @@ import pickle
 import logging
 import sys
 
-module_dir = os.path.expanduser('~/repos/UoB/bath-persuasion-detection/models')
+module_dir = os.path.expanduser(
+    '~/repos/UoB/bath-persuasion-detection/models/')
 sys.path.append(module_dir)
 
-from bert_classifier import BertClassifier
+from bert_classifier import BertClassifier # noqa
 
 
 def get_args():
@@ -57,15 +58,12 @@ def gen_metadata(config, metatype, **kwargs):
     return meta
 
 
-def load_dataloader(config):
-    pass
-
-
 def load_model(config, num_classes):
 
     model = BertClassifier(config.get('pretrained_model'), num_classes)
     model.load_state_dict(load(config.get('model_path')))
     return model
+
 
 def load_dataloader(config, item_name):
     with open(
@@ -74,3 +72,37 @@ def load_dataloader(config, item_name):
             ) as f:
         dataloader = pickle.load(f)
     return dataloader
+
+
+def output_predictions(predictions, config):
+
+    with open(config.get('output_predictions_path'), 'w') as f:
+        for prediction in predictions:
+            pred, true = prediction
+            f.write(f'True: {pred} - ' + f'Pred: {true}' + '\n')
+
+
+def fetch_labels(config):
+
+    labels = [
+        '1-RAPPORT',
+        '2-NEGOTIATE',
+        '3-EMOTION',
+        '4-LOGIC',
+        '5-AUTHORITY',
+        '6-SOCIAL',
+        '7-PRESSURE',
+        '8-NO-PERSUASION'
+    ]
+
+    if config.get('drop_columns'):
+        for i in config.get('drop_columns'):
+            labels.remove(i)
+
+    return labels
+
+
+def open_texts(path):
+    with open(path, 'r') as file:
+        texts = file.read().readlines()
+    return texts

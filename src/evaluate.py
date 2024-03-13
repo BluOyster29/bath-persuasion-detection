@@ -46,7 +46,7 @@ def eval_model(model, eval_loader, device):
     return true_labels, predicted_labels
 
 
-def gen_stats(true_labels, predicted_labels):
+def gen_stats(true_labels, predicted_labels, labels=None):
 
     accuracy = accuracy_score(true_labels, predicted_labels)
     precision = precision_score(
@@ -55,7 +55,8 @@ def gen_stats(true_labels, predicted_labels):
         true_labels, predicted_labels, average='weighted', zero_division=True)
     f1 = f1_score(
         true_labels, predicted_labels, average='weighted', zero_division=True)
-    report = classification_report(true_labels, predicted_labels)
+    report = classification_report(
+        true_labels, predicted_labels, target_names=labels, zero_division=True)
 
     return {
         'accuracy': accuracy,
@@ -172,7 +173,7 @@ def gen_roc_auc(true_labels, predicted_labels, label_columns, config):
         )
 
 
-def output_stats(stats, config):
+def output_stats(stats, path):
 
     """
     Writes the evaluation statistics to a file and prints them to the console.
@@ -185,7 +186,7 @@ def output_stats(stats, config):
         None
     """
 
-    with open(config.get('stats_path'), 'w') as f:
+    with open(path, 'w') as f:
         f.write(f"Accuracy: {stats['accuracy']}\n")
         f.write(f"Precision: {stats['precision']}\n")
         f.write(f"Recall: {stats['recall']}\n")
@@ -215,7 +216,7 @@ def evaluate(config, eval_loader=None, trained_model=None):
 
     stats = gen_stats(true_labels, predicted_labels)
     gen_roc_auc(true_labels, predicted_labels, label_columns, config)
-    output_stats(stats, config)
+    output_stats(stats, config.get('stat_path'))
 
 
 if __name__ == '__main__':

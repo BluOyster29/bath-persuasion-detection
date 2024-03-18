@@ -38,6 +38,5 @@ notebooks/.ipynb_checkpoints/*
 src/.ipynb_checkpoints/*
 models/saved_models/*
 src/bath-persuasion-detection.code-workspace
-data/annotation/output_frm_doccano/24040ef3-d7ac-4da1-8c82-bd7dd1aa644e.zip
-data/annotation/output_frm_doccano/d5689e6a-dc56-4a31-9831-3f4db022bc8a/brit.jsonl
-data/annotation/output_frm_doccano/d5689e6a-dc56-4a31-9831-3f4db022bc8a/robAdmin.jsonl
+data/annotation/*
+data/testing/*

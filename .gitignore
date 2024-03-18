@@ -37,3 +37,4 @@ Thumbs.db
 notebooks/.ipynb_checkpoints/*
 src/.ipynb_checkpoints/*
 models/saved_models/*
+src/bath-persuasion-detection.code-workspace

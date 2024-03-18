@@ -16,7 +16,7 @@ binary_model: False
 batch_size: 64
 num_epochs: 5
 learning_rate: 0.001
-pretrained_model: distilbert-base-uncased
+pretrained_model: bert-base-uncased
 optimizer: AdamW
 weight_decay: 0.01
 output_model: ./models/saved_models/
@@ -33,6 +33,6 @@ stats_path: ./results/stats/stats.txt
 
 # TESTING_CONFIG
 testing_data: /Users/rt853/repos/UoB/bath-persuasion-detection/data/processed/dataframes/from_doccano_chatgpt_gen.csv
-testing_model_path: /Users/rt853/repos/UoB/bath-persuasion-detection/models/saved_models/distilbert_no_social_15epo.pth
-output_predictions_path: ./results/predictions/predictions.txt
-test_stat_path: ./results/stats/test_stats.txt
+testing_model_path: /Users/rt853/repos/UoB/bath-persuasion-detection/models/saved_models/bert_base_all_10epo.pth
+output_predictions_path: ./results/predictions/doc_test_2.txt
+test_stat_path: ./results/stats/doc_test_2.txt

@@ -40,3 +40,4 @@ models/saved_models/*
 src/bath-persuasion-detection.code-workspace
 data/annotation/*
 data/testing/*
+data/processed/dataloaders/models/*

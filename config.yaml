@@ -5,11 +5,17 @@ path_to_training: ./data/raw/training.csv
 path_to_testing: ./data/raw/testing.csv
 concat : True 
 test_size : 0.2
-drop_social_pressure: True
-max_token_count : 60
-drop_class: 
+max_token_len : 60
+dop_columns: 
   - 6-SOCIAL
   - 7-PRESSURE
+embedding_batch:
+  - bert-base-uncased
+sampler_batch: 
+  - False
+drop_col_batch:
+  - True
+output_data_path: /Users/rt853/repos/UoB/bath-persuasion-detection/data/test/dataloaders/
 
 # MODEL TRAINING
 binary_model: False
@@ -32,7 +38,7 @@ roc_plot_path : ./results/figures/roc_plot.png
 stats_path: ./results/stats/stats.txt
 
 # TESTING_CONFIG
-testing_data: /Users/rt853/repos/UoB/bath-persuasion-detection/data/processed/dataframes/from_doccano_chatgpt_gen.csv
-testing_model_path: /Users/rt853/repos/UoB/bath-persuasion-detection/models/saved_models/bert_base_all_10epo.pth
+testing_model_path: /Users/rt853/repos/UoB/bath-persuasion-detection/data/processed/dataloaders/models/bert-base-uncased_sampler_True_drop_labels_True.pth
+eval_dataloader_path: /Users/rt853/repos/UoB/bath-persuasion-detection/data/processed/dataloaders/testing/test_bert-base-uncased_sampler_True_drop_labels_True.pkl
 output_predictions_path: ./results/predictions/doc_test_2.txt
-test_stat_path: ./results/stats/doc_test_2.txt
+test_stat_path: /Users/rt853/repos/UoB/bath-persuasion-detection/results/stats/pppppp.txteval_dataloader_path

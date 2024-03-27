@@ -1,0 +1,7 @@
+{
+    "accuracy": 0.7573333333333333, 
+    "precision": 0.7850557269336329, 
+    "recall": 0.7748167888074617, 
+    "f1": 0.7766114248542958, 
+    "report": "                 precision    recall  f1-score   support\n\n      1-RAPPORT       0.91      0.81      0.86       755\n    2-NEGOTIATE       0.75      0.87      0.80       300\n      3-EMOTION       0.66      0.76      0.71       225\n        4-LOGIC       0.32      0.34      0.33        77\n    5-AUTHORITY       0.72      0.81      0.76        77\n       6-SOCIAL       0.00      0.00      0.00         3\n     7-PRESSURE       1.00      1.00      1.00         0\n8-NO-PERSUASION       0.54      0.52      0.53        64\n\n      micro avg       0.77      0.77      0.77      1501\n      macro avg       0.61      0.64      0.62      1501\n   weighted avg       0.79      0.77      0.78      1501\n    samples avg       0.78      0.78      0.77      1501\n"
+}

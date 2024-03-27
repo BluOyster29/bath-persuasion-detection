@@ -7,7 +7,7 @@ import numpy as np
 from transformers import AutoTokenizer
 
 
-class PersuasionStrategyDatasetBERT(Dataset):
+class PersuasionStrategyDataset(Dataset):
     def __init__(
         self,
         data: pd.DataFrame,
@@ -18,7 +18,7 @@ class PersuasionStrategyDatasetBERT(Dataset):
         self.tokenizer = tokenizer
         self.data = data
         self.max_token_len = max_token_len
-        self.label_columns = data.columns.tolist()[1:]
+        self.LABEL_COLUMNS = data.columns.tolist()[1:]
 
     def __len__(self):
         return len(self.data)
@@ -27,7 +27,7 @@ class PersuasionStrategyDatasetBERT(Dataset):
 
         data_row = self.data.iloc[index]
         comment_text = data_row.text
-        labels = data_row[self.label_columns]
+        labels = data_row[self.LABEL_COLUMNS]
         encoding = self.tokenizer.encode_plus(
             comment_text,
             add_special_tokens=True,
@@ -51,7 +51,7 @@ class PersuasionStrategyDatasetLSTM(Dataset):
     def __init__(self, data: pd.DataFrame, vocab):
         self.encoded_text = self.df_to_tensor(data.encoded.tolist())
         self.labels = data.iloc[:, 1:-1].values.tolist()
-        self.label_columns = data.columns.tolist()[1:-1]
+        self.LABEL_COLUMNS = data.columns.tolist()[1:-1]
         self.vocab = vocab
         self.vocab_size = len(vocab)
 

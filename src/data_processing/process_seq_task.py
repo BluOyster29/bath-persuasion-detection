@@ -1,5 +1,5 @@
-import pandas as pd 
-import json 
+import pandas as pd
+import json
 import re
 import argparse
 
@@ -19,6 +19,7 @@ label_columns = [
     '8-NO-PERSUASION'
 ]
 
+
 def open_jsonl(file_path):
     with open(file_path, 'r') as f:
         data = f.readlines()
@@ -29,9 +30,9 @@ def gen_idx_map(text):
 
     start_idx = 0
     idx_map = {}
-    
+
     for idx, i in enumerate(text.split('\n')):
-        
+
         end_idx = start_idx + len(i)
         idx_map[idx] = (start_idx, end_idx)
         start_idx = end_idx
@@ -43,12 +44,12 @@ def add_labels_to_text(text, labels):
     idx_map = gen_idx_map(text)
     splat_text = text.split('\n')
     for label in labels:
-        _ ,end_idx ,label = label
+        _,  end_idx, label = label
         for idx, (s, e) in idx_map.items():
             if end_idx <= e:
                 splat_text[idx] += ' - ' + label
                 break
-    return splat_text 
+    return splat_text
 
 
 def process_transcripts(jsonl):
@@ -61,52 +62,53 @@ def process_transcripts(jsonl):
         if len(labels) < 1:
             break
         transcripts.append(add_labels_to_text(text, labels))
-        
+
     return transcripts
 
 
 def process_line(line):
 
     split_line = line.split(' - ')
-    
+
     if len(split_line) > 2:
         text, label = split_line[0], split_line[1:]
-        
+
     elif len(split_line) < 2:
         text, label = line, '8-NO-PERSUASION'
     else:
         text, label = line.split(' - ')
 
-
     return text[10:], label
 
 
-def update_labels(label_columns, data, labels:list):
+def update_labels(label_columns, data, labels: list):
+
     if not isinstance(labels, list):
         labels = [labels]
-        
+
     for i in label_columns:
         if i in labels:
             data[i].append(1)
         else:
             data[i].append(0)
     return data
-    
+
+
 def generate_dataframe(jsonl, label_columns):
 
     transcripts = process_transcripts(jsonl)
-    
-    data = {i : [] for i in label_columns}
+
+    data = {i: [] for i in label_columns}
     data['text'] = []
-    
+
     for t in transcripts:
         for line in t:
-            
+
             if re.match('Persuader:', line):
                 text, label = process_line(line)
                 data['text'].append(text)
                 data = update_labels(label_columns, data, label)
-                
+
             else:
                 continue
     df = pd.DataFrame(data)

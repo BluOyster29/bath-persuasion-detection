@@ -5,7 +5,10 @@ import matplotlib.pyplot as plt
 from sklearn.metrics import classification_report, accuracy_score, roc_curve
 from sklearn.metrics import f1_score, recall_score, precision_score, auc
 import torch
+import warnings
+from persuasion_strategy_dataset import PersuasionStrategyDataset
 
+warnings.filterwarnings('ignore', category=FutureWarning)
 
 def eval_model(model, eval_loader, device):
     """
@@ -24,7 +27,6 @@ def eval_model(model, eval_loader, device):
     true_labels = []
     predicted_labels = []
 
-    model.eval()
     with torch.no_grad():
         for batch in tqdm(eval_loader):
 
@@ -34,6 +36,7 @@ def eval_model(model, eval_loader, device):
                 embeddings = model.embd(input_ids)
                 outputs = model(embeddings)
             else:
+                
                 input_ids = batch['input_ids'].to(device)
                 attention_mask = batch['attention_mask'].to(device)
                 labels = batch['labels'].to(device)
@@ -125,7 +128,7 @@ def plot_roc_curve(fpr, tpr, roc_auc, fpr_micr, tpr_micr, roc_auc_micr,
 
     for i in range(len(label_columns)):
         plt.plot(
-            fpr[i], tpr[i], label='ROC curve of class {0} (area = {1:0.2f})'
+            fpr[i], tpr[i], label=f'ROC curve of class {label_columns[i]} (area = {1:0.2f})'
             ''.format(i+1, roc_auc[i]))
 
     plt.plot([0, 1], [0, 1], 'k--', linewidth=2)  # Plot diagonal line
@@ -202,21 +205,22 @@ def output_stats(stats, path):
 
 def evaluate(config, eval_loader=None, trained_model=None):
 
-    label_columns = eval_loader.dataset.label_columns
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-
-    if config.get('From saved mode'):
-        trained_model = load_model(config.get('model_path'), label_columns)
 
     if not eval_loader:
         eval_loader = load_dataloader(config)
+
+    label_columns = eval_loader.dataset.LABEL_COLUMNS
+
+    if config.get('testing_model_path'):
+        trained_model = load_model(config, len(label_columns))
 
     true_labels, predicted_labels = eval_model(
         trained_model, eval_loader, device)
 
     stats = gen_stats(true_labels, predicted_labels)
     gen_roc_auc(true_labels, predicted_labels, label_columns, config)
-    output_stats(stats, config.get('stat_path'))
+    output_stats(stats, config.get('test_stat_path'))
 
 
 if __name__ == '__main__':

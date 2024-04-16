@@ -3,10 +3,6 @@ import json
 import re
 import argparse
 
-p = argparse.ArgumentParser()
-p.add_argument('jsonl_path', type=str, help='Path to the jsonl file')
-p.add_argument('output_path', type=str, help='Path to the output file')
-args = p.parse_args()
 
 label_columns = [
     '1-RAPPORT',
@@ -18,6 +14,13 @@ label_columns = [
     '7-PRESSURE',
     '8-NO-PERSUASION'
 ]
+
+
+def genargs():
+    p = argparse.ArgumentParser()
+    p.add_argument('jsonl_path', type=str, help='Path to the jsonl file')
+    p.add_argument('output_path', type=str, help='Path to the output file')
+    return p.parse_args()
 
 
 def open_jsonl(file_path):
@@ -52,12 +55,12 @@ def add_labels_to_text(text, labels):
     return splat_text
 
 
-def process_transcripts(jsonl):
+def process_transcripts(jsonl, text_column):
 
     transcripts = []
     for idx, line in enumerate(jsonl):
         j = json.loads(line)
-        text = j['text']
+        text = j[text_column]
         labels = j['label']
         if len(labels) < 1:
             break
@@ -94,28 +97,29 @@ def update_labels(label_columns, data, labels: list):
     return data
 
 
-def generate_dataframe(jsonl, label_columns):
+def generate_dataframe(jsonl, label_columns, text_column):
 
-    transcripts = process_transcripts(jsonl)
+    transcripts = process_transcripts(jsonl, text_column)
 
     data = {i: [] for i in label_columns}
-    data['text'] = []
+    data[text_column] = []
 
     for t in transcripts:
         for line in t:
 
             if re.match('Persuader:', line):
                 text, label = process_line(line)
-                data['text'].append(text)
+                data[text_column].append(text)
                 data = update_labels(label_columns, data, label)
 
             else:
                 continue
     df = pd.DataFrame(data)
-    return df[['text'] + label_columns]
+    return df[[text_column] + label_columns]
 
 
 if __name__ == '__main__':
+    args = genargs()
     jsonl = open_jsonl(args.jsonl_path)
     df = generate_dataframe(jsonl, label_columns)
     df.to_csv(args.output_path, index=False)

@@ -992,3 +992,16 @@ data/postgres/pg_multixact/offsets/0000
 data/postgres/pg_subtrans/0000
 data/postgres/pg_wal/000000010000000000000001
 data/postgres/pg_xact/0000
+notebooks/data_preprocessing/.ipynb_checkpoints/binary_sentence_labels-checkpoint.ipynb
+notebooks/data_preprocessing/.ipynb_checkpoints/Build_Dataloaders-checkpoint.ipynb
+notebooks/data_preprocessing/.ipynb_checkpoints/legacy_data-checkpoint.ipynb
+notebooks/data_preprocessing/.ipynb_checkpoints/legacy_transcript_gen-checkpoint.ipynb
+notebooks/modeling/.ipynb_checkpoints/BERT_MODELING-checkpoint.ipynb
+notebooks/modeling/.ipynb_checkpoints/binarey_classifer-checkpoint.ipynb
+notebooks/modeling/.ipynb_checkpoints/binary_classifier_train-checkpoint.ipynb
+notebooks/task_processing/.ipynb_checkpoints/anti_scam_processing-checkpoint.ipynb
+notebooks/task_processing/.ipynb_checkpoints/merge_new_data_task12-checkpoint.ipynb
+notebooks/task_processing/.ipynb_checkpoints/process_task_2_doccano-checkpoint.ipynb
+notebooks/task_processing/.ipynb_checkpoints/processing_doccano_output-checkpoint.ipynb
+notebooks/task_processing/.ipynb_checkpoints/spred_dataset-checkpoint.ipynb
+notebooks/task_processing/.ipynb_checkpoints/testing-checkpoint.ipynb

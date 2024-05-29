@@ -1,0 +1,164 @@
+{"id":99,"text":"Hey, how's it going? I hope you're doing well.","label":["1-RAPPORT"],"Comments":[]}
+{"id":100,"text":"I understand you might be busy, but could you spare some time to help me out?","label":["1-RAPPORT","4-LOGIC"],"Comments":[]}
+{"id":101,"text":"I'm really passionate about this cause, and I know you care about it too.","label":["1-RAPPORT","3-EMOTION"],"Comments":[]}
+{"id":102,"text":"Participating in this event aligns with your values of giving back to the community.","label":["1-RAPPORT","3-EMOTION"],"Comments":[]}
+{"id":103,"text":"The organizers of this charity event have recognized me for my contributions, and they've asked me to invite you to join.","label":["1-RAPPORT","2-NEGOTIATE","5-AUTHORITY"],"Comments":[]}
+{"id":104,"text":"Many people from our circle are already involved, and they're counting on us to participate.","label":["2-NEGOTIATE","6-SOCIAL","7-PRESSURE"],"Comments":[]}
+{"id":105,"text":"It would mean a lot to me if you could join. I'm relying on your support.","label":["2-NEGOTIATE","3-EMOTION"],"Comments":[]}
+{"id":106,"text":"But it's totally up to you. No pressure at all.","label":["1-RAPPORT","2-NEGOTIATE","3-EMOTION"],"Comments":[]}
+{"id":107,"text":"I'm really excited about this opportunity, and I think you'd enjoy it too.","label":["2-NEGOTIATE","3-EMOTION"],"Comments":[]}
+{"id":108,"text":"As someone who's been involved in similar events before, I can assure you it's a worthwhile experience.","label":["2-NEGOTIATE","6-SOCIAL"],"Comments":[]}
+{"id":109,"text":"Our friends have had amazing experiences participating in these charity runs.","label":["2-NEGOTIATE","3-EMOTION","6-SOCIAL","7-PRESSURE"],"Comments":[]}
+{"id":110,"text":"By participating, we can contribute to a cause we both care about while also improving our fitness.","label":["2-NEGOTIATE","3-EMOTION","4-LOGIC"],"Comments":[]}
+{"id":111,"text":"I've already registered us both, so I hope you're on board!","label":["3-EMOTION","7-PRESSURE"],"Comments":[]}
+{"id":112,"text":"But of course, if you're not interested, that's okay too.","label":["2-NEGOTIATE","3-EMOTION"],"Comments":[]}
+{"id":113,"text":"Research shows that participating in charity events improves overall well-being.","label":["2-NEGOTIATE","5-AUTHORITY"],"Comments":[]}
+{"id":114,"text":"Imagine the joy of crossing the finish line knowing you've made a difference.","label":["2-NEGOTIATE","3-EMOTION","7-PRESSURE"],"Comments":[]}
+{"id":115,"text":"Let's compromise. If you join me for the run, I'll help you with your project next week.","label":["2-NEGOTIATE","7-PRESSURE"],"Comments":[]}
+{"id":116,"text":"We can form a team and motivate each other throughout the training.","label":["2-NEGOTIATE","3-EMOTION"],"Comments":[]}
+{"id":117,"text":"We've always supported each other's goals. Joining this event would mean a lot to me.","label":["2-NEGOTIATE","3-EMOTION","6-SOCIAL","7-PRESSURE"],"Comments":[]}
+{"id":118,"text":"Experts in philanthropy recommend getting involved in community events like this.","label":["2-NEGOTIATE","5-AUTHORITY"],"Comments":[]}
+{"id":119,"text":"Come on, don't miss out on this opportunity to do something meaningful.","label":["3-EMOTION"],"Comments":[]}
+{"id":120,"text":"I feel deeply connected to this cause, and I believe you would too.","label":["1-RAPPORT","3-EMOTION"],"Comments":[]}
+{"id":121,"text":"Participating in the charity run aligns with our shared values of compassion and generosity.","label":["2-NEGOTIATE","3-EMOTION","6-SOCIAL"],"Comments":[]}
+{"id":122,"text":"The local news interviewed me about the impact of this charity event. They're expecting a big turnout.","label":["2-NEGOTIATE","4-LOGIC"],"Comments":[]}
+{"id":123,"text":"Remember the great time we had at the last charity event? This one will be even better.","label":["1-RAPPORT","2-NEGOTIATE","3-EMOTION"],"Comments":[]}
+{"id":124,"text":"Let's find a way to make it work with your schedule. Can you spare just a couple of hours?","label":["2-NEGOTIATE","3-EMOTION"],"Comments":[]}
+{"id":125,"text":"I've already signed us up, so we're all set to go. Just say yes!","label":["2-NEGOTIATE","3-EMOTION","6-SOCIAL"],"Comments":[]}
+{"id":126,"text":"Our colleagues from work are forming a team. It'll be a great chance to bond outside the office.","label":["3-EMOTION","6-SOCIAL"],"Comments":[]}
+{"id":127,"text":"Participating in the charity run is a win-win situation. We get to exercise while supporting a good cause.","label":["2-NEGOTIATE","3-EMOTION","6-SOCIAL"],"Comments":[]}
+{"id":128,"text":"Health experts recommend engaging in community events like this for both physical and mental well-being.","label":["2-NEGOTIATE","4-LOGIC","5-AUTHORITY","6-SOCIAL"],"Comments":[]}
+{"id":129,"text":"Our friends from the running club are all joining. It'll be a fun group activity!","label":["3-EMOTION","6-SOCIAL"],"Comments":[]}
+{"id":130,"text":"Think about the smiles we'll bring to people's faces by contributing to charity.","label":["3-EMOTION","6-SOCIAL"],"Comments":[]}
+{"id":131,"text":"Let's make a deal. If you come with me, I'll treat you to dinner afterwards.","label":["2-NEGOTIATE","7-PRESSURE"],"Comments":[]}
+{"id":132,"text":"I know you've been wanting to get more involved in community activities. This is a perfect opportunity.","label":["2-NEGOTIATE","6-SOCIAL","7-PRESSURE"],"Comments":[]}
+{"id":133,"text":"Don't miss out on this chance to make a real difference in people's lives.","label":["2-NEGOTIATE","7-PRESSURE"],"Comments":[]}
+{"id":134,"text":"The mayor's office endorsed this charity run as an important community event.","label":["2-NEGOTIATE","5-AUTHORITY"],"Comments":[]}
+{"id":135,"text":"I'm really passionate about helping those in need, and I know you are too.","label":["3-EMOTION","6-SOCIAL"],"Comments":[]}
+{"id":136,"text":"Participating in the run is a practical way to support the cause and stay healthy.","label":["3-EMOTION","6-SOCIAL"],"Comments":[]}
+{"id":137,"text":"We've always had each other's backs. Let's do this together.","label":["3-EMOTION","6-SOCIAL","7-PRESSURE"],"Comments":[]}
+{"id":138,"text":"Our neighbors are forming a team. It'll be a great chance to strengthen our community bonds.","label":["3-EMOTION","6-SOCIAL"],"Comments":[]}
+{"id":139,"text":"I understand you're busy, but even if you can spare just a little time, it would mean a lot.","label":[],"Comments":[]}
+{"id":140,"text":"I've already told everyone you're joining us. It would be awkward if you backed out now.","label":[],"Comments":[]}
+{"id":141,"text":"Participating in the charity run is a tangible way to make a positive impact in our community.","label":[],"Comments":[]}
+{"id":142,"text":"The organizers of the event have been recognized by national media for their outstanding contributions.","label":[],"Comments":[]}
+{"id":143,"text":"Our family members are all participating. It'll be a memorable experience for everyone.","label":[],"Comments":[]}
+{"id":144,"text":"Just imagine the sense of accomplishment we'll feel as we cross the finish line together.","label":[],"Comments":[]}
+{"id":145,"text":"We've always supported each other's goals. Let's continue that tradition with this event.","label":[],"Comments":[]}
+{"id":146,"text":"I know your schedule is tight, but even if you can make it for part of the event, it would be great.","label":[],"Comments":[]}
+{"id":147,"text":"I've already registered you as my running buddy. Don't let me down!","label":[],"Comments":[]}
+{"id":148,"text":"All our friends are participating in the charity run. It's going to be a blast!","label":[],"Comments":[]}
+{"id":149,"text":"Taking part in this event is a practical way to contribute to a cause we both care about.","label":[],"Comments":[]}
+{"id":150,"text":"Hey, how's it going? I hope you're doing well.","label":[],"Comments":[]}
+{"id":151,"text":"I understand you might be busy, but could you spare some time to help me out?","label":[],"Comments":[]}
+{"id":152,"text":"I'm really passionate about this cause, and I know you care about it too.","label":[],"Comments":[]}
+{"id":153,"text":"Participating in this event aligns with your values of giving back to the community.","label":[],"Comments":[]}
+{"id":154,"text":"The organizers of this charity event have recognized me for my contributions, and they've asked me to invite you to join.","label":[],"Comments":[]}
+{"id":155,"text":"Many people from our circle are already involved, and they're counting on us to participate.","label":[],"Comments":[]}
+{"id":156,"text":"It would mean a lot to me if you could join. I'm relying on your support.","label":[],"Comments":[]}
+{"id":157,"text":"But it's totally up to you. No pressure at all.","label":[],"Comments":[]}
+{"id":158,"text":"I'm really excited about this opportunity, and I think you'd enjoy it too.","label":[],"Comments":[]}
+{"id":159,"text":"As someone who's been involved in similar events before, I can assure you it's a worthwhile experience.","label":[],"Comments":[]}
+{"id":160,"text":"Our friends have had amazing experiences participating in these charity runs.","label":[],"Comments":[]}
+{"id":161,"text":"By participating, we can contribute to a cause we both care about while also improving our fitness.","label":[],"Comments":[]}
+{"id":162,"text":"I've already registered us both, so I hope you're on board!","label":[],"Comments":[]}
+{"id":163,"text":"But of course, if you're not interested, that's okay too.","label":[],"Comments":[]}
+{"id":164,"text":"Research shows that participating in charity events improves overall well-being.","label":[],"Comments":[]}
+{"id":165,"text":"Imagine the joy of crossing the finish line knowing you've made a difference.","label":[],"Comments":[]}
+{"id":166,"text":"Let's compromise. If you join me for the run, I'll help you with your project next week.","label":[],"Comments":[]}
+{"id":167,"text":"We can form a team and motivate each other throughout the training.","label":[],"Comments":[]}
+{"id":168,"text":"We've always supported each other's goals. Joining this event would mean a lot to me.","label":[],"Comments":[]}
+{"id":169,"text":"Experts in philanthropy recommend getting involved in community events like this.","label":[],"Comments":[]}
+{"id":170,"text":"Come on, don't miss out on this opportunity to do something meaningful.","label":[],"Comments":[]}
+{"id":171,"text":"I feel deeply connected to this cause, and I believe you would too.","label":[],"Comments":[]}
+{"id":172,"text":"Participating in the charity run aligns with our shared values of compassion and generosity.","label":[],"Comments":[]}
+{"id":173,"text":"The local news interviewed me about the impact of this charity event. They're expecting a big turnout.","label":[],"Comments":[]}
+{"id":174,"text":"Remember the great time we had at the last charity event? This one will be even better.","label":[],"Comments":[]}
+{"id":175,"text":"Let's find a way to make it work with your schedule. Can you spare just a couple of hours?","label":[],"Comments":[]}
+{"id":176,"text":"I've already signed us up, so we're all set to go. Just say yes!","label":[],"Comments":[]}
+{"id":177,"text":"Our colleagues from work are forming a team. It'll be a great chance to bond outside the office.","label":[],"Comments":[]}
+{"id":178,"text":"Participating in the charity run is a win-win situation. We get to exercise while supporting a good cause.","label":[],"Comments":[]}
+{"id":179,"text":"Health experts recommend engaging in community events like this for both physical and mental well-being.","label":[],"Comments":[]}
+{"id":180,"text":"Our friends from the running club are all joining. It'll be a fun group activity!","label":[],"Comments":[]}
+{"id":181,"text":"Think about the smiles we'll bring to people's faces by contributing to charity.","label":[],"Comments":[]}
+{"id":182,"text":"Let's make a deal. If you come with me, I'll treat you to dinner afterwards.","label":[],"Comments":[]}
+{"id":183,"text":"I know you've been wanting to get more involved in community activities. This is a perfect opportunity.","label":[],"Comments":[]}
+{"id":184,"text":"Don't miss out on this chance to make a real difference in people's lives.","label":[],"Comments":[]}
+{"id":185,"text":"The mayor's office endorsed this charity run as an important community event.","label":[],"Comments":[]}
+{"id":186,"text":"I'm really passionate about helping those in need, and I know you are too.","label":[],"Comments":[]}
+{"id":187,"text":"Participating in the run is a practical way to support the cause and stay healthy.","label":[],"Comments":[]}
+{"id":188,"text":"We've always had each other's backs. Let's do this together.","label":[],"Comments":[]}
+{"id":189,"text":"Our neighbors are forming a team. It'll be a great chance to strengthen our community bonds.","label":[],"Comments":[]}
+{"id":190,"text":"I understand you're busy, but even if you can spare just a little time, it would mean a lot.","label":[],"Comments":[]}
+{"id":191,"text":"I've already told everyone you're joining us. It would be awkward if you backed out now.","label":[],"Comments":[]}
+{"id":192,"text":"Participating in the charity run is a tangible way to make a positive impact in our community.","label":[],"Comments":[]}
+{"id":193,"text":"The organizers of the event have been recognized by national media for their outstanding contributions.","label":[],"Comments":[]}
+{"id":194,"text":"Our family members are all participating. It'll be a memorable experience for everyone.","label":[],"Comments":[]}
+{"id":195,"text":"Just imagine the sense of accomplishment we'll feel as we cross the finish line together.","label":[],"Comments":[]}
+{"id":196,"text":"We've always supported each other's goals. Let's continue that tradition with this event.","label":[],"Comments":[]}
+{"id":197,"text":"I know your schedule is tight, but even if you can make it for part of the event, it would be great.","label":[],"Comments":[]}
+{"id":198,"text":"I've already registered you as my running buddy. Don't let me down!","label":[],"Comments":[]}
+{"id":199,"text":"All our friends are participating in the charity run. It's going to be a blast!","label":[],"Comments":[]}
+{"id":200,"text":"Taking part in this event is a practical way to contribute to a cause we both care about.","label":[],"Comments":[]}
+{"id":201,"text":"I can't wait to experience the sense of fulfillment that comes with helping others.","label":[],"Comments":[]}
+{"id":202,"text":"We've always supported each other's endeavors. Let's make this one count too.","label":[],"Comments":[]}
+{"id":203,"text":"I know your schedule is tight, but can you carve out a few hours for this?","label":[],"Comments":[]}
+{"id":204,"text":"The charity organization behind this event has a stellar reputation for making a difference.","label":[],"Comments":[]}
+{"id":205,"text":"I've already bought us matching running gear. You can't say no now!","label":[],"Comments":[]}
+{"id":206,"text":"I'm really passionate about this cause, and I know you are too.","label":[],"Comments":[]}
+{"id":207,"text":"Participating in the charity run is a practical way to make a positive impact.","label":[],"Comments":[]}
+{"id":208,"text":"Our coworkers are forming teams. It'll be a great chance to bond outside of work.","label":[],"Comments":[]}
+{"id":209,"text":"The charity run has been endorsed by influential figures in the community.","label":[],"Comments":[]}
+{"id":210,"text":"Let's figure out a way to fit it into your schedule. Can you spare just a couple of hours?","label":[],"Comments":[]}
+{"id":211,"text":"We've always supported each other in our endeavors. Let's continue that tradition with this event.","label":[],"Comments":[]}
+{"id":212,"text":"Hey, how's it going? I hope you're doing well.","label":[],"Comments":[]}
+{"id":213,"text":"I understand you might be busy, but could you spare some time to help me out?","label":[],"Comments":[]}
+{"id":214,"text":"I'm really passionate about this cause, and I know you care about it too.","label":[],"Comments":[]}
+{"id":215,"text":"Participating in this event aligns with your values of giving back to the community.","label":[],"Comments":[]}
+{"id":216,"text":"The organizers of this charity event have recognized me for my contributions, and they've asked me to invite you to join.","label":[],"Comments":[]}
+{"id":217,"text":"Many people from our circle are already involved, and they're counting on us to participate.","label":[],"Comments":[]}
+{"id":218,"text":"It would mean a lot to me if you could join. I'm relying on your support.","label":[],"Comments":[]}
+{"id":219,"text":"But it's totally up to you. No pressure at all.","label":[],"Comments":[]}
+{"id":220,"text":"I'm really excited about this opportunity, and I think you'd enjoy it too.","label":[],"Comments":[]}
+{"id":221,"text":"As someone who's been involved in similar events before, I can assure you it's a worthwhile experience.","label":[],"Comments":[]}
+{"id":222,"text":"Our friends have had amazing experiences participating in these charity runs.","label":[],"Comments":[]}
+{"id":223,"text":"By participating, we can contribute to a cause we both care about while also improving our fitness.","label":[],"Comments":[]}
+{"id":224,"text":"I've already registered us both, so I hope you're on board!","label":[],"Comments":[]}
+{"id":225,"text":"But of course, if you're not interested, that's okay too.","label":[],"Comments":[]}
+{"id":226,"text":"Research shows that participating in charity events improves overall well-being.","label":[],"Comments":[]}
+{"id":227,"text":"Imagine the joy of crossing the finish line knowing you've made a difference.","label":[],"Comments":[]}
+{"id":228,"text":"Let's compromise. If you join me for the run, I'll help you with your project next week.","label":[],"Comments":[]}
+{"id":229,"text":"We can form a team and motivate each other throughout the training.","label":[],"Comments":[]}
+{"id":230,"text":"We've always supported each other's goals. Joining this event would mean a lot to me.","label":[],"Comments":[]}
+{"id":231,"text":"Experts in philanthropy recommend getting involved in community events like this.","label":[],"Comments":[]}
+{"id":232,"text":"Come on, don't miss out on this opportunity to do something meaningful.","label":[],"Comments":[]}
+{"id":233,"text":"I feel deeply connected to this cause, and I believe you would too.","label":[],"Comments":[]}
+{"id":234,"text":"Participating in the charity run aligns with our shared values of compassion and generosity.","label":[],"Comments":[]}
+{"id":235,"text":"The local news interviewed me about the impact of this charity event. They're expecting a big turnout.","label":[],"Comments":[]}
+{"id":236,"text":"Remember the great time we had at the last charity event? This one will be even better.","label":[],"Comments":[]}
+{"id":237,"text":"Let's find a way to make it work with your schedule. Can you spare just a couple of hours?","label":[],"Comments":[]}
+{"id":238,"text":"I've already signed us up, so we're all set to go. Just say yes!","label":[],"Comments":[]}
+{"id":239,"text":"Our colleagues from work are forming a team. It'll be a great chance to bond outside the office.","label":[],"Comments":[]}
+{"id":240,"text":"Participating in the charity run is a win-win situation. We get to exercise while supporting a good cause.","label":[],"Comments":[]}
+{"id":241,"text":"Health experts recommend engaging in community events like this for both physical and mental well-being.","label":[],"Comments":[]}
+{"id":242,"text":"Our friends from the running club are all joining. It'll be a fun group activity!","label":[],"Comments":[]}
+{"id":243,"text":"Think about the smiles we'll bring to people's faces by contributing to charity.","label":[],"Comments":[]}
+{"id":244,"text":"Let's make a deal. If you come with me, I'll treat you to dinner afterwards.","label":[],"Comments":[]}
+{"id":245,"text":"I know you've been wanting to get more involved in community activities. This is a perfect opportunity.","label":[],"Comments":[]}
+{"id":246,"text":"Don't miss out on this chance to make a real difference in people's lives.","label":[],"Comments":[]}
+{"id":247,"text":"The mayor's office endorsed this charity run as an important community event.","label":[],"Comments":[]}
+{"id":248,"text":"I'm really passionate about helping those in need, and I know you are too.","label":[],"Comments":[]}
+{"id":249,"text":"Participating in the run is a practical way to support the cause and stay healthy.","label":[],"Comments":[]}
+{"id":250,"text":"We've always had each other's backs. Let's do this together.","label":[],"Comments":[]}
+{"id":251,"text":"Our neighbors are forming a team. It'll be a great chance to strengthen our community bonds.","label":[],"Comments":[]}
+{"id":252,"text":"I understand you're busy, but even if you can spare just a little time, it would mean a lot.","label":[],"Comments":[]}
+{"id":253,"text":"I've already told everyone you're joining us. It would be awkward if you backed out now.","label":[],"Comments":[]}
+{"id":254,"text":"Participating in the charity run is a tangible way to make a positive impact in our community.","label":[],"Comments":[]}
+{"id":255,"text":"The organizers of the event have been recognized by national media for their outstanding contributions.","label":[],"Comments":[]}
+{"id":256,"text":"Our family members are all participating. It'll be a memorable experience for everyone.","label":[],"Comments":[]}
+{"id":257,"text":"Just imagine the sense of accomplishment we'll feel as we cross the finish line together.","label":[],"Comments":[]}
+{"id":258,"text":"We've always supported each other's goals. Let's continue that tradition with this event.","label":[],"Comments":[]}
+{"id":259,"text":"I know your schedule is tight, but even if you can make it for part of the event, it would be great.","label":[],"Comments":[]}
+{"id":260,"text":"I've already registered you as my running buddy. Don't let me down!","label":[],"Comments":[]}
+{"id":261,"text":"All our friends are participating in the charity run. It's going to be a blast!","label":[],"Comments":[]}
+{"id":262,"text":"Taking part in this event is a practical way to contribute to a cause we both care about.","label":[],"Comments":[]}

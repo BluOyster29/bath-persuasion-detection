@@ -1,12 +1,9 @@
 import pandas as pd
+import os
 from sklearn.model_selection import train_test_split
-from utils import getargs, load_config
-from persuasion_strategy_dataset import PersuasionStrategyDataset
-from transformers import AutoTokenizer
-from torch.utils.data import WeightedRandomSampler
-import torch
+from utils.utils import getargs, load_config, find_pers_type
 from torch.utils.data import DataLoader
-from collections import Counter
+from utils.data import gen_sampler
 import pickle
 import warnings
 import logging
@@ -18,8 +15,8 @@ warnings.filterwarnings('ignore', category=FutureWarning)
 
 def fetch_data(path_to_training, path_to_testing=None):
 
-    if path_to_testing:
-        df = pd.read_csv(path_to_testing)
+    if not path_to_testing:
+        df = pd.read_csv(path_to_training)
 
     else:
         df = pd.concat(
@@ -60,86 +57,86 @@ def import_data(
     return train_df, test_df
 
 
-def build_sampler(training_dataset):
-    labels = [
-        torch.argmax(label['labels']).item() for label in training_dataset]
-    class_distribution = Counter(labels)
+def gen_datasets(df, label, tokenizer, task):
 
-    # Calculate weights for each sample
-    class_weights = {
-        class_label: len(training_dataset) / (
-            len(class_distribution) * class_count)
-        for class_label, class_count in class_distribution.items()
-        }
-
-    weights = [class_weights[label] for label in labels]
-
-    # Convert weights to tensor
-    weights_tensor = torch.tensor(weights, dtype=torch.float)
-
-    # Create a sampler to balance the dataset during training
-    sampler = WeightedRandomSampler(weights_tensor, len(weights_tensor))
-    return sampler
-
-
-def gen_loaders(
-    train_df,
-    test_df,
-    embedding,
-    max_token_len,
-    sampler=None,
-    val_loader=None
-        ):
-
-    tokenizer = AutoTokenizer.from_pretrained(embedding)
-    training_dataset = PersuasionStrategyDataset(
-        train_df,
-        tokenizer,
-        max_token_len
+    train_df, test_df = train_test_split(
+        df, test_size=0.2, random_state=42, shuffle=True,
     )
 
-    if sampler:
-        sampler = build_sampler(training_dataset)
+    if task == 'multilabel':
+        from persuasion_detection import PersuasionStrategyMultilabelDataset \
+            as PersuasionDataset
 
-    training_dataloader = DataLoader(
-        training_dataset,
-        batch_size=64,
+    elif task == 'binary_classification':
+        from persuasion_detection import PersuasionStrategyDataset \
+            as PersuasionDataset
+
+    train_ds = PersuasionDataset(
+        train_df, label, tokenizer
+    )
+
+    test_ds = PersuasionDataset(
+        test_df, label, tokenizer
+        )
+
+    return train_ds, test_ds
+
+
+def gen_dataloaders(dataset, batch_size, test=None):
+
+    if test:
+        sampler = None
+    else:
+        sampler = gen_sampler(dataset)
+
+    dataloader = DataLoader(
+        dataset,
         sampler=sampler,
-        )
-
-    if isinstance(test_df, pd.DataFrame):
-        val_loader = DataLoader(
-            PersuasionStrategyDataset(
-                test_df,
-                tokenizer,
-                max_token_len
-            ),
-            batch_size=32
-        )
-
-    return training_dataloader, val_loader
+        batch_size=batch_size
+    )
+    return dataloader
 
 
 def gen_dloader_paths(config, embedding, sampler_config, drop_config):
 
     root = config.get('output_data_path')
 
-    if embedding == 'TODBERT/TOD-BERT-JNT-V1':
-        training_path = root + 'training/train_TODBERT_sampler_' + \
-            f'{sampler_config}_drop_labels_{drop_config}.pkl'
-        testing_path = root + 'testing/test_TODBERT_sampler_' + \
-            f'{sampler_config}_drop_labels_{drop_config}.pkl'
+    if config.get('task') == 'binary_classification':
+        pers_strat = find_pers_type(config.get('path_to_training'))
 
+    if not os.path.exists(root+config.get('task')):
+        os.makedirs(root + config.get('task') + '/')
+
+    root += config.get('task') + '/'
+
+    if config.get('task') == 'binary_classification' and os.path.exists(root + pers_strat) == False:
+        os.makedirs(root + pers_strat + '/')
+        root = root + pers_strat + '/'
+        os.makedirs(root+'training/')
+        os.makedirs(root+'testing/')
+
+    if embedding == 'TODBERT/TOD-BERT-JNT-V1':
+        prefix = 'TODBERT'
     else:
-        training_path = root + f'training/train_{embedding}_sampler_' + \
-            f'{sampler_config}_drop_labels_{drop_config}.pkl'
-        testing_path = root + f'testing/test_{embedding}_sampler_' + \
-            f'{sampler_config}_drop_labels_{drop_config}.pkl'
+        prefix = embedding
+
+    training_path = (
+        f"{root}training/train_{prefix}_sampler_{sampler_config}_"
+        f"drop_labels_{drop_config}_{config.get('task')}.pkl"
+    )
+    testing_path = (
+        f"{root}testing/test_{prefix}_sampler_{sampler_config}_"
+        f"drop_labels_{drop_config}_{config.get('task')}.pkl"
+    )
 
     return training_path, testing_path
 
 
 def build_dataloaders(config):
+
+    if config.get('task') == 'binary_classification':
+        config['persuasion_type'] = find_pers_type(
+            config.get('path_to_training'))
 
     for embedding in config.get('embedding_batch'):
         for sampler_config in config.get('sampler_batch'):
@@ -152,12 +149,12 @@ def build_dataloaders(config):
 
                 train_df, test_df = import_data(config)
                 training_dataloader, val_loader = gen_loaders(
-                    train_df, test_df, embedding,
+                    train_df, test_df, embedding, config.get('task'),
                     config.get('max_token_len'), sampler_config)
 
                 output_dataloaders(
-                    config, training_dataloader,
-                    val_loader, embedding, sampler_config, drop_config
+                    config, training_dataloader, val_loader,
+                    embedding, sampler_config, drop_config
                     )
 
 

@@ -1,0 +1,242 @@
+[
+      {
+            "text": "1-RAPPORT-OTHER",
+            "suffix_key": "a",
+            "background_color": "#4172C3",
+            "text_color": "#ffffff"
+      },
+      {
+            "text": "1-RAPPORT-FRIEND",
+            "suffix_key": "b",
+            "background_color": "#CCEEEA",
+            "text_color": "#ffffff"
+      },
+      {
+            "text": "1-RAPPORT-COMPLIMENT",
+            "suffix_key": "c",
+            "background_color": "#727A90",
+            "text_color": "#ffffff"
+      },
+      {
+            "text": "1-RAPPORT-SIMILAR",
+            "suffix_key": "d",
+            "background_color": "#06600A",
+            "text_color": "#ffffff"
+      },
+      {
+            "text": "1-RAPPORT-DISCLOSE",
+            "suffix_key": "e",
+            "background_color": "#9DBF4D",
+            "text_color": "#ffffff"
+      },
+      {
+            "text": "2-NEGOTIATE-OTHER",
+            "suffix_key": "f",
+            "background_color": "#742AD5",
+            "text_color": "#ffffff"
+      },
+      {
+            "text": "2-NEGOTIATE-RECIP",
+            "suffix_key": "g",
+            "background_color": "#F91546",
+            "text_color": "#ffffff"
+      },
+      {
+            "text": "2-NEGOTIATE-BARGAIN",
+            "suffix_key": "h",
+            "background_color": "#61AF2B",
+            "text_color": "#ffffff"
+      },
+      {
+            "text": "2-NEGOTIATE-OPINION",
+            "suffix_key": "i",
+            "background_color": "#7592ED",
+            "text_color": "#ffffff"
+      },
+      {
+            "text": "2-NEGOTIATE-REQUEST",
+            "suffix_key": "j",
+            "background_color": "#60959C",
+            "text_color": "#ffffff"
+      },
+      {
+            "text": "2-NEGOTIATE-REMIND",
+            "suffix_key": "k",
+            "background_color": "#F3A556",
+            "text_color": "#ffffff"
+      },
+      {
+            "text": "2-NEGOTIATE-SCARCITY",
+            "suffix_key": "l",
+            "background_color": "#861266",
+            "text_color": "#ffffff"
+      },
+      {
+            "text": "2-NEGOTIATE-REWARD",
+            "suffix_key": "m",
+            "background_color": "#BA4BAD",
+            "text_color": "#ffffff"
+      },
+      {
+            "text": "3-EMOTION-OTHER",
+            "suffix_key": "n",
+            "background_color": "#9FA080",
+            "text_color": "#ffffff"
+      },
+      {
+            "text": "3-EMOTION-PROMISE",
+            "suffix_key": "o",
+            "background_color": "#6D6BAF",
+            "text_color": "#ffffff"
+      },
+      {
+            "text": "3-EMOTION-ALTERCASTING",
+            "suffix_key": "p",
+            "background_color": "#9574FD",
+            "text_color": "#ffffff"
+      },
+      {
+            "text": "3-EMOTION-ALTRUISTIC",
+            "suffix_key": "q",
+            "background_color": "#A96B80",
+            "text_color": "#ffffff"
+      },
+      {
+            "text": "3-EMOTION-HUMOUR",
+            "suffix_key": "r",
+            "background_color": "#92D233",
+            "text_color": "#ffffff"
+      },
+      {
+            "text": "3-EMOTION-STORY",
+            "suffix_key": "s",
+            "background_color": "#27BA96",
+            "text_color": "#ffffff"
+      },
+      {
+            "text": "3-EMOTION-ANGER",
+            "suffix_key": "t",
+            "background_color": "#3AF3AB",
+            "text_color": "#ffffff"
+      },
+      {
+            "text": "3-EMOTION-GUILT",
+            "suffix_key": "u",
+            "background_color": "#8B0D3D",
+            "text_color": "#ffffff"
+      },
+      {
+            "text": "3-EMOTION-EMPATHY",
+            "suffix_key": "v",
+            "background_color": "#4EC379",
+            "text_color": "#ffffff"
+      },
+      {
+            "text": "4-LOGIC-OTHER",
+            "suffix_key": "w",
+            "background_color": "#76344B",
+            "text_color": "#ffffff"
+      },
+      {
+            "text": "4-LOGIC-COUNTER",
+            "suffix_key": "x",
+            "background_color": "#C98ED0",
+            "text_color": "#ffffff"
+      },
+      {
+            "text": "4-LOGIC-ARGUE",
+            "suffix_key": "y",
+            "background_color": "#AE48D4",
+            "text_color": "#ffffff"
+      },
+      {
+            "text": "4-LOGIC-CONCEDE",
+            "suffix_key": "z",
+            "background_color": "#3490F5",
+            "text_color": "#ffffff"
+      },
+      {
+            "text": "4-LOGIC-WITHDRAW",
+            "suffix_key": "1",
+            "background_color": "#90C9E9",
+            "text_color": "#ffffff"
+      },
+      {
+            "text": "5-AUTHORITY-OTHER",
+            "suffix_key": "2",
+            "background_color": "#B7986B",
+            "text_color": "#ffffff"
+      },
+      {
+            "text": "5-AUTHORITY-SUPERIOR",
+            "suffix_key": "3",
+            "background_color": "#130D00",
+            "text_color": "#ffffff"
+      },
+      {
+            "text": "5-AUTHORITY-CREDENTIALS",
+            "suffix_key": "4",
+            "background_color": "#E25B97",
+            "text_color": "#ffffff"
+      },
+      {
+            "text": "6-SOCIAL-OTHER",
+            "suffix_key": "5",
+            "background_color": "#2F3B32",
+            "text_color": "#ffffff"
+      },
+      {
+            "text": "6-SOCIAL-NORMS",
+            "suffix_key": "6",
+            "background_color": "#B99561",
+            "text_color": "#ffffff"
+      },
+      {
+            "text": "6-SOCIAL-GROUP",
+            "suffix_key": "7",
+            "background_color": "#067DDF",
+            "text_color": "#ffffff"
+      },
+      {
+            "text": "6-SOCIAL-PEER",
+            "suffix_key": "8",
+            "background_color": "#4A9FF5",
+            "text_color": "#ffffff"
+      },
+      {
+            "text": "7-PRESSURE-OTHER",
+            "suffix_key": "9",
+            "background_color": "#386F37",
+            "text_color": "#ffffff"
+      },
+      {
+            "text": "7-PRESSURE-FORCE",
+            "suffix_key": "0",
+            "background_color": "#F250CF",
+            "text_color": "#ffffff"
+      },
+      {
+            "text": "7-PRESSURE-INTIMIDATE",
+            "suffix_key": "",
+            "background_color": "#FE9EBB",
+            "text_color": "#ffffff"
+      },
+      {
+            "text": "7-PRESSURE-THREAT",
+            "suffix_key": "",
+            "background_color": "#6E922C",
+            "text_color": "#ffffff"
+      },
+      {
+            "text": "7-PRESSURE-PRESIST",
+            "suffix_key": "",
+            "background_color": "#D1BE57",
+            "text_color": "#ffffff"
+      },
+      {
+            "text": "7-PRESSURE-MANIPULATE",
+            "suffix_key": "",
+            "background_color": "#A01056",
+            "text_color": "#ffffff"
+      }
+]

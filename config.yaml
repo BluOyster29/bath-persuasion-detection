@@ -1,20 +1,22 @@
 # Config variables for text classification using BERT embeddings
 
 # DATA PREPROCESSING
-path_to_training: ./data/raw/training.csv
-path_to_testing: ./data/raw/testing.csv
+path_to_training: /Users/rt853/repos/UoB/bath-persuasion-detection/data/binary_sentence_level/2-NEGOTIATE_binary_sentence.csv
+path_to_testing: 
 concat : True 
+task : 'binary_classification'
 test_size : 0.2
 max_token_len : 60
 dop_columns: 
-  - 6-SOCIAL
-  - 7-PRESSURE
 embedding_batch:
   - bert-base-uncased
+  - roberta-base
+  - distilbert-base-uncased
+  - roberta-large
 sampler_batch: 
   - False
 drop_col_batch:
-  - True
+  - False
 output_data_path: /Users/rt853/repos/UoB/bath-persuasion-detection/data/test/dataloaders/
 
 # MODEL TRAINING

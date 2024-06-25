@@ -1006,3 +1006,7 @@ notebooks/task_processing/.ipynb_checkpoints/processing_doccano_output-checkpoin
 notebooks/task_processing/.ipynb_checkpoints/spred_dataset-checkpoint.ipynb
 notebooks/task_processing/.ipynb_checkpoints/testing-checkpoint.ipynb
 config.yaml
+models/binary_models/emotion_binary_model.pt
+models/binary_models/negotiate_binary_model.pt
+models/binary_models/rapport_binary_model.pt
+bath-persuasion-detection.code-workspace

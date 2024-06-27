@@ -15,7 +15,7 @@ def forward_pass(model_name, batch, model, input_ids, attention_mask, labels):
 
 def update_pb(epoch_loss, epoch, batch):
     avg_epoch_loss = round(sum(epoch_loss)/len(epoch_loss), 4)
-    description = f'Epoch: {epoch} | '
+    description = f'Epoch: {epoch+1} | '
     description += f'Batch {batch} | '
     description += f'Average Loss: {avg_epoch_loss}'
     return description
